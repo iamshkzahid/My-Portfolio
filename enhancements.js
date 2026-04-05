@@ -299,7 +299,6 @@
       var timelineItems = section.querySelectorAll('.timeline-item');
       var progressBars = section.querySelectorAll('.progress-bar');
 
-      // Stat cards: stagger scale + fade
       if (items.length) {
         gsap.fromTo(items,
           { y: 40, opacity: 0, scale: 0.9 },
@@ -309,7 +308,6 @@
       // Animated counters
       animateCounters(section);
 
-      // Timeline: alternating slide from left/right
       if (timelineItems.length) {
         for (var i = 0; i < timelineItems.length; i++) {
           var fromX = (i % 2 === 0) ? -40 : 40;
@@ -322,7 +320,6 @@
       // Skill bars fill
       animateSkillBars(section);
 
-      // Progress bar labels
       if (progressBars.length) {
         gsap.fromTo(progressBars,
           { opacity: 0 },
@@ -370,9 +367,8 @@
 
   window.animateSectionEntry = animateSectionContent;
 
-  // ============================================================
   // 7. ANIMATED COUNTERS (stat cards count up)
-  // ============================================================
+
   function animateCounters(section) {
     if (typeof gsap === 'undefined') return;
     var largeTexts = section.querySelectorAll('.large-text');
@@ -380,11 +376,11 @@
       var text = el.textContent.trim();
       var num = parseInt(text);
       if (isNaN(num)) {
-        // Text like "Active" — do a scramble reveal
+        // Text like "Active" — scramble reveal
         scrambleText(el, text);
         return;
       }
-      var suffix = text.replace(num.toString(), ''); // e.g., "+"
+      var suffix = text.replace(num.toString(), ''); 
       el.textContent = '0' + suffix;
       var obj = { val: 0 };
       gsap.to(obj, {
@@ -399,9 +395,8 @@
     });
   }
 
-  // ============================================================
   // 8. TEXT SCRAMBLE EFFECT
-  // ============================================================
+
   function scrambleText(el, finalText) {
     var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&*';
     var iterations = 0;
@@ -415,9 +410,8 @@
     }, 40);
   }
 
-  // ============================================================
   // 9. SKILL BARS FILL ANIMATION
-  // ============================================================
+
   function animateSkillBars(section) {
     var bars = section.querySelectorAll('.progress span');
     bars.forEach(function(bar) {
@@ -432,9 +426,8 @@
     });
   }
 
-  // ============================================================
   // 10. LETTER-BY-LETTER HOVER
-  // ============================================================
+
   var letterized = false;
   function splitTextToLetters() {
     var nameEl = document.querySelector('.header-content .right-header .name');
@@ -492,9 +485,7 @@
     });
   }
 
-  // ============================================================
   // 11. 3D TILT ON CARDS (About + Portfolio)
-  // ============================================================
   function initTiltEffect() {
     // About stat cards
     var aboutItems = document.querySelectorAll('.about-container .right-about .about-item');
@@ -526,9 +517,8 @@
     this.style.transform = '';
   }
 
-  // ============================================================
   // 12. MAGNETIC NAV BUTTONS
-  // ============================================================
+
   function initMagneticButtons() {
     if (window.innerWidth <= 768) return;
     var buttons = document.querySelectorAll('.control, .theme-btn');
@@ -551,9 +541,8 @@
     });
   }
 
-  // ============================================================
   // 13. SCROLL PROGRESS INDICATOR
-  // ============================================================
+
   function initScrollProgress() {
     var bar = document.createElement('div');
     bar.className = 'scroll-progress';
@@ -568,9 +557,8 @@
     });
   }
 
-  // ============================================================
   // 14. LEAFLET MAP
-  // ============================================================
+
   var mapInitialized = false;
   function initMap() {
     if (mapInitialized) return;
@@ -598,9 +586,8 @@
     setTimeout(function() { map.invalidateSize(); }, 300);
   }
 
-  // ============================================================
   // 15. TOAST NOTIFICATIONS
-  // ============================================================
+
   window.showToast = function(message, type) {
     type = type || 'success';
     var existing = document.querySelector('.toast-notification');
@@ -628,9 +615,8 @@
     }, 4000);
   };
 
-  // ============================================================
   // 16. CUSTOM CURSOR
-  // ============================================================
+
   function initCustomCursor() {
     if (window.matchMedia('(hover: none)').matches) return;
     if (window.innerWidth <= 768) return;
@@ -667,9 +653,8 @@
     });
   }
 
-  // ============================================================
   // 17. CURSOR SPARKLE PARTICLE TRAIL
-  // ============================================================
+
   function initCursorSparkles() {
     if (window.matchMedia('(hover: none)').matches) return;
     if (window.innerWidth <= 768) return;
@@ -700,9 +685,9 @@
     });
   }
 
-  // ============================================================
+
   // 18. MOUSE PARALLAX ON HEADER
-  // ============================================================
+
   function initMouseParallax() {
     if (window.innerWidth <= 768) return;
 
@@ -726,9 +711,8 @@
     });
   }
 
-  // ============================================================
   // 19. MORPHING AURORA BLOBS (background)
-  // ============================================================
+
   function createAuroraBlobs() {
     for (var i = 1; i <= 3; i++) {
       var blob = document.createElement('div');
@@ -737,19 +721,17 @@
     }
   }
 
-  // ============================================================
   // 20. TYPING CURSOR ON PARAGRAPH
-  // ============================================================
+
   function addTypingCursor() {
     var p = document.querySelector('.header-content .right-header p');
     if (p) p.classList.add('typed');
   }
 
-  // ============================================================
   // 21. GLITCH EFFECT ON LETTER HOVER (enhanced)
-  // ============================================================
+
   function initGlitchLetters() {
-    // Wait for letters to be created by splitTextToLetters
+
     var observer = new MutationObserver(function() {
       var nameEl = document.querySelector('.letter-hover-target');
       if (!nameEl) return;
@@ -760,7 +742,7 @@
 
       letters.forEach(function(letter) {
         letter.addEventListener('mouseenter', function() {
-          // Randomly choose between glitch and animate.css effects
+
           if (Math.random() < 0.35) {
             this.classList.add('letter-glitch');
             var self = this;
@@ -775,9 +757,8 @@
     observer.observe(document.body, { childList: true, subtree: true });
   }
 
-  // ============================================================
   // 22. DRAMATIC THEME TOGGLE
-  // ============================================================
+
   function initThemeToggleFlash() {
     var themeBtn = document.querySelector('.theme-btn');
     if (!themeBtn) return;
@@ -804,20 +785,17 @@
     });
   }
 
-  // ============================================================
   // 23. STAT CARD GLOW AFTER COUNTING
-  // ============================================================
+
   function addCountedGlow() {
-    // Add glow class to about items after counters finish
     setTimeout(function() {
       var items = document.querySelectorAll('.about-container .right-about .about-item');
       items.forEach(function(item) { item.classList.add('counted'); });
     }, 2500);
   }
 
-  // ============================================================
-  // 24. TOUCH SPARKLE BURST (mobile replacement for cursor trail)
-  // ============================================================
+  // 24. TOUCH SPARKLE BURST 
+
   function initTouchSparkles() {
     var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
@@ -827,7 +805,7 @@
 
     document.addEventListener('touchstart', function(e) {
       var now = Date.now();
-      if (now - lastTap < 200) return; // Throttle
+      if (now - lastTap < 200) return; 
       lastTap = now;
 
       var touch = e.touches[0];
@@ -858,9 +836,8 @@
     }, { passive: true });
   }
 
-  // ============================================================
   // 25. SWIPE NAVIGATION (mobile gesture between sections)
-  // ============================================================
+
   function initSwipeNavigation() {
     var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
@@ -870,9 +847,8 @@
     var touchStartY = 0;
     var touchEndX = 0;
     var touchEndY = 0;
-    var minSwipe = 80; // minimum px for a swipe
+    var minSwipe = 80; 
 
-    // Create swipe hint element
     var hint = document.createElement('div');
     hint.className = 'swipe-hint';
     hint.innerHTML = '<span>Swipe to navigate</span><div class="swipe-arrows"><span>›</span><span>›</span><span>›</span></div>';
@@ -899,7 +875,7 @@
 
       // Only trigger if horizontal swipe is dominant
       if (Math.abs(diffX) < minSwipe) return;
-      if (Math.abs(diffY) > Math.abs(diffX) * 0.7) return; // Too vertical
+      if (Math.abs(diffY) > Math.abs(diffX) * 0.7) return; 
 
       // Find current section index
       var currentSection = document.querySelector('.active');
@@ -917,14 +893,12 @@
         nextIndex = currentIndex - 1;
       }
 
-      // Bounds check
       if (nextIndex < 0 || nextIndex >= sectionOrder.length) return;
 
       var nextId = sectionOrder[nextIndex];
       var nextSection = document.getElementById(nextId);
       if (!nextSection || nextSection === currentSection) return;
 
-      // Hide swipe hint on first successful swipe
       clearTimeout(hintTimeout);
       hint.style.transition = 'opacity 0.3s';
       hint.style.opacity = '0';
@@ -939,7 +913,7 @@
       // Update URL hash
       history.replaceState(null, '', '#' + nextId);
 
-      // Trigger cinematic transition
+      // cinematic transition
       if (typeof window.switchSection === 'function') {
         window.switchSection(currentSection, nextSection);
       } else {
@@ -949,9 +923,8 @@
     }, { passive: true });
   }
 
-  // ============================================================
   // 26. TOUCH-FRIENDLY PORTFOLIO OVERLAY
-  // ============================================================
+
   function initTouchPortfolio() {
     var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
