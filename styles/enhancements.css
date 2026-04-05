@@ -1,0 +1,675 @@
+/* ============================================================
+   ENHANCEMENTS.CSS — v3 NEXT-GEN
+   Industry-best animations & premium visual effects
+   ============================================================ */
+
+/* ---- Particle Canvas ---- */
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Ensure all content is ABOVE the particle canvas */
+body > header { position: relative; z-index: 2; }
+body > main { position: relative; z-index: 2; }
+.theme-btn { z-index: 10 !important; }
+
+/* ---- Enhanced Preloader ---- */
+#preloader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: #0a0d14;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+#preloader.preloader-done {
+  opacity: 0; visibility: hidden; pointer-events: none;
+}
+.pacman-loader {
+  position: relative;
+  width: 60px; height: 60px;
+}
+.pacman-loader .pacman {
+  position: absolute;
+  width: 0; height: 0;
+  border: 30px solid var(--color-secondary, #27AE60);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: pacmanMouth 0.35s ease-in-out infinite alternate;
+}
+.pacman-dots {
+  display: flex; align-items: center;
+  gap: 14px; margin-left: 70px; margin-top: -44px;
+}
+.pacman-dots .dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background-color: var(--color-secondary, #27AE60);
+  opacity: 0.6;
+  animation: pacmanDotMove 1.4s ease-in-out infinite;
+}
+.pacman-dots .dot:nth-child(2) { animation-delay: 0.15s; }
+.pacman-dots .dot:nth-child(3) { animation-delay: 0.3s; }
+.pacman-dots .dot:nth-child(4) { animation-delay: 0.45s; }
+
+.preloader-text {
+  margin-top: 40px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  animation: preloaderPulse 1.5s ease-in-out infinite;
+}
+
+/* Preloader progress bar */
+.preloader-progress {
+  width: 200px; height: 2px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+.preloader-progress-bar {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--color-secondary), #6fea9c);
+  border-radius: 2px;
+  transition: width 0.05s linear;
+}
+.preloader-counter {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-secondary, #27AE60);
+  margin-top: 15px;
+  letter-spacing: 2px;
+}
+
+@keyframes pacmanMouth {
+  0%   { border-right-color: transparent; }
+  100% { border-right-color: var(--color-secondary, #27AE60); }
+}
+@keyframes pacmanDotMove {
+  0%   { transform: translateX(0); opacity: 0.6; }
+  50%  { opacity: 1; }
+  100% { transform: translateX(-50px); opacity: 0; }
+}
+@keyframes preloaderPulse {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 1; }
+}
+
+/* ---- Transition Bars (Cinematic Wipe) ---- */
+.transition-bars {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+.transition-bar {
+  flex: 1;
+  background: linear-gradient(90deg, #1a7a42, var(--color-secondary, #27AE60), #6fea9c);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/* ---- Letter Hover ---- */
+.letter-hover-target .letter {
+  display: inline-block;
+  transition: color 0.2s ease;
+  cursor: default;
+}
+.letter-hover-target .letter-space {
+  display: inline-block;
+  width: 0.35em;
+}
+
+/* ---- Glassmorphism Stat Cards ---- */
+.about-container .right-about {
+  perspective: 1200px;
+}
+.about-container .right-about .about-item {
+  transform-style: preserve-3d;
+  will-change: transform;
+  background: rgba(255, 255, 255, 0.03) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(39, 174, 96, 0.12) !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out, box-shadow 0.3s ease;
+}
+.about-container .right-about .about-item:hover {
+  box-shadow: 0 8px 32px rgba(39, 174, 96, 0.2), inset 0 0 30px rgba(39, 174, 96, 0.05);
+  border-color: var(--color-secondary) !important;
+}
+/* Animated gradient sweep on hover */
+.about-container .right-about .about-item::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: conic-gradient(from 0deg, transparent 0%, rgba(39,174,96,0.08) 25%, transparent 50%);
+  animation: cardSweep 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.about-container .right-about .about-item:hover::after {
+  opacity: 1;
+}
+@keyframes cardSweep {
+  100% { transform: rotate(360deg); }
+}
+
+/* ---- Portfolio Glow on Hover ---- */
+.portfolios .portfolio-item {
+  transform-style: preserve-3d;
+  transition: all 0.4s ease-in-out, box-shadow 0.3s ease !important;
+  overflow: hidden;
+}
+.portfolios .portfolio-item:hover {
+  box-shadow: 0 0 40px rgba(39, 174, 96, 0.25);
+}
+/* Ensure hover overlay sits ABOVE shimmer ::after (z-index:2) */
+.portfolios .portfolio-item .hover-items {
+  z-index: 10 !important;
+  pointer-events: auto !important;
+}
+/* Make icon links absolutely clickable */
+.portfolios .portfolio-item .hover-items .icons .icon {
+  position: relative;
+  z-index: 11;
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+
+/* ---- Leaflet Map ---- */
+#contact-map {
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+  border: 2px solid var(--color-grey-5, #2a2e35);
+  overflow: hidden;
+  z-index: 1;
+  position: relative;
+}
+.leaflet-tile-pane { filter: brightness(0.85) saturate(1.1); }
+.leaflet-container { font-family: 'Poppins', sans-serif !important; }
+
+/* ---- Toast Notifications ---- */
+.toast-notification {
+  position: fixed;
+  top: 20px; right: 20px;
+  min-width: 280px; max-width: 400px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem; font-weight: 500;
+  color: #fff; z-index: 100000;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  transform: translateX(120%); opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  pointer-events: none;
+}
+.toast-notification.toast-visible { transform: translateX(0); opacity: 1; pointer-events: auto; }
+.toast-notification.toast-success { background: linear-gradient(135deg, #27AE60, #1e8c4c); }
+.toast-notification.toast-error { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+.toast-notification .toast-close {
+  position: absolute; top: 8px; right: 12px;
+  background: none; border: none;
+  color: rgba(255,255,255,0.7); font-size: 1.2rem;
+  cursor: pointer; line-height: 1;
+}
+.toast-notification .toast-close:hover { color: #fff; }
+
+/* ---- Custom Cursor ---- */
+.cursor-dot {
+  position: fixed;
+  width: 8px; height: 8px; border-radius: 50%;
+  background-color: var(--color-secondary, #27AE60);
+  pointer-events: none; z-index: 99998;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1.5px solid var(--color-secondary, #27AE60);
+  pointer-events: none; z-index: 99997;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+}
+.cursor-ring.cursor-hover {
+  width: 60px; height: 60px;
+  border-color: rgba(39, 174, 96, 0.35);
+}
+
+/* ---- Scroll Progress Indicator ---- */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--color-secondary), #6fea9c);
+  z-index: 99996;
+  transition: width 0.05s linear;
+}
+
+/* ---- Clip-path text reveal helper ---- */
+.clip-reveal {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+}
+
+/* ============================================================
+   ★★★ NEXT-GEN PREMIUM EFFECTS ★★★
+   ============================================================ */
+
+/* ---- 1. ANIMATED GRADIENT TEXT ---- */
+/* Name heading flows with living gradient */
+.header-content .right-header .name span,
+.letter-hover-target span {
+  background: linear-gradient(
+    90deg,
+    var(--color-secondary, #27AE60),
+    #6fea9c,
+    #1abc9c,
+    var(--color-secondary, #27AE60)
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientFlow 4s ease-in-out infinite;
+}
+/* Section title highlights also get gradient — EXCLUDE .bg-text watermark */
+.main-title h2 span:not(.bg-text) {
+  background: linear-gradient(
+    90deg,
+    var(--color-secondary, #27AE60),
+    #6fea9c,
+    #2ecc71,
+    var(--color-secondary, #27AE60)
+  ) !important;
+  background-size: 300% 100% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: gradientFlow 5s ease-in-out infinite !important;
+}
+/* Ensure bg-text watermark stays properly behind */
+.main-title h2 .bg-text {
+  -webkit-text-fill-color: initial !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  background: none !important;
+  color: var(--color-grey-5) !important;
+  opacity: 0.15;
+  animation: none !important;
+}
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ---- 2. CURSOR SPARKLE TRAIL ---- */
+.cursor-sparkle {
+  position: fixed;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99995;
+  animation: sparkleFloat 0.8s ease-out forwards;
+}
+@keyframes sparkleFloat {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(
+      calc(-50% + var(--sx, 0px)),
+      calc(-50% + var(--sy, 0px))
+    ) scale(0);
+    opacity: 0;
+  }
+}
+
+/* ---- 3. MORPHING AURORA BLOBS ---- */
+.aurora-blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.05;
+  z-index: 0;
+  pointer-events: none;
+  animation: blobMorph 20s ease-in-out infinite;
+}
+.aurora-blob.blob-1 {
+  width: 500px; height: 500px;
+  background: var(--color-secondary, #27AE60);
+  top: -10%; left: -5%;
+}
+.aurora-blob.blob-2 {
+  width: 400px; height: 400px;
+  background: #1abc9c;
+  bottom: -10%; right: -5%;
+  animation-delay: -7s;
+}
+.aurora-blob.blob-3 {
+  width: 350px; height: 350px;
+  background: #6fea9c;
+  top: 40%; left: 50%;
+  animation-delay: -14s;
+}
+@keyframes blobMorph {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  25% { transform: translate(60px, -40px) scale(1.15) rotate(5deg); }
+  50% { transform: translate(-30px, 50px) scale(0.9) rotate(-5deg); }
+  75% { transform: translate(40px, 25px) scale(1.08) rotate(3deg); }
+}
+
+/* ---- 4. FILM GRAIN OVERLAY ---- */
+body::after {
+  content: '';
+  position: fixed;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  pointer-events: none;
+  z-index: 99990;
+  opacity: 0.018;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px);
+  background-size: 4px 4px;
+  animation: grainDrift 0.8s steps(2) infinite;
+}
+@keyframes grainDrift {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(-2px, 1px); }
+  100% { transform: translate(1px, -1px); }
+}
+
+/* ---- 5. SHIMMER SWEEP ON PORTFOLIO ---- */
+.portfolios .portfolio-item::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.08) 40%,
+    rgba(255,255,255,0.15) 50%,
+    rgba(255,255,255,0.08) 60%,
+    transparent 100%
+  );
+  z-index: 2;
+  transition: left 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.portfolios .portfolio-item:hover::after {
+  left: 150%;
+}
+
+/* ---- 6. FLOATING SOCIAL ICONS ---- */
+.header-content .btn-social-wrapper .socials-container a {
+  animation: gentleFloat 3s ease-in-out infinite;
+}
+.header-content .btn-social-wrapper .socials-container a:nth-child(2) {
+  animation-delay: -1.5s;
+}
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ---- 7. PULSING CTA BUTTON GLOW ---- */
+.header-content .btn-con .main-btn {
+  animation: btnPulseGlow 2.5s ease-in-out infinite;
+}
+@keyframes btnPulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.4); }
+  50% { box-shadow: 0 0 25px 6px rgba(39, 174, 96, 0.12); }
+}
+
+/* ---- 8. TYPING CURSOR BLINK ---- */
+.header-content .right-header p.typed::after {
+  content: '|';
+  display: inline-block;
+  color: var(--color-secondary, #27AE60);
+  font-weight: 100;
+  margin-left: 2px;
+  animation: cursorBlink 1s step-end infinite;
+}
+@keyframes cursorBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* ---- 9. GLITCH LETTER EFFECT ---- */
+.letter.letter-glitch {
+  animation: letterGlitch 0.2s ease !important;
+  color: var(--color-secondary) !important;
+  text-shadow:
+    2px 0 #ff0040,
+    -2px 0 #0ff;
+}
+@keyframes letterGlitch {
+  0%, 100% { transform: translate(0); filter: hue-rotate(0deg); }
+  20% { transform: translate(-3px, 2px) skewX(5deg); filter: hue-rotate(90deg); }
+  40% { transform: translate(3px, -2px) skewX(-3deg); }
+  60% { transform: translate(-1px, -1px) skewX(2deg); filter: hue-rotate(-90deg); }
+  80% { transform: translate(2px, 1px) skewX(-1deg); }
+}
+
+/* ---- 10. TIMELINE ANIMATED PULSE DOTS ---- */
+.timeline-item .tl-icon {
+  position: relative;
+}
+.timeline-item .tl-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--color-secondary, #27AE60);
+  transform: translate(-50%, -50%);
+  animation: iconPulseRing 2s ease-out infinite;
+}
+@keyframes iconPulseRing {
+  0% { width: 100%; height: 100%; opacity: 0.6; }
+  100% { width: 180%; height: 180%; opacity: 0; }
+}
+
+/* ---- 11. THEME TOGGLE FLASH ---- */
+.theme-flash {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: white;
+  z-index: 99998;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* ---- 12. HEADER PARALLAX DEPTH ---- */
+.header-content .left-header {
+  transition: transform 0.1s ease-out;
+}
+.header-content .right-header {
+  transition: transform 0.1s ease-out;
+}
+
+/* ---- 13. PORTFOLIO IMAGE ZOOM ON HOVER ---- */
+.portfolios .portfolio-item .image img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.portfolios .portfolio-item:hover .image img {
+  transform: scale(1.08);
+}
+
+/* ---- 14. STAT CARD ENTRANCE GLOW ---- */
+.about-container .right-about .about-item.counted .large-text {
+  text-shadow: 0 0 20px rgba(39, 174, 96, 0.3);
+}
+
+/* ---- 15. ACTIVE NAV BUTTON GLOW ---- */
+.controls .active-btn {
+  box-shadow: 0 0 18px rgba(39, 174, 96, 0.35) !important;
+}
+
+/* ==============================
+   RESPONSIVE — MOBILE-ENHANCED
+   ============================== */
+
+/* Desktop-only: custom cursor (no mouse on mobile) */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-dot, .cursor-ring { display: none !important; }
+  /* Desktop sparkle trail hidden (replaced by touch-sparkle on mobile) */
+  .cursor-sparkle { display: none !important; }
+}
+
+/* -- TOUCH SPARKLE BURST (mobile-only) -- */
+.touch-sparkle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  animation: touchSparkle 0.6s ease-out forwards;
+}
+@keyframes touchSparkle {
+  0% { transform: scale(0); opacity: 1; }
+  60% { opacity: 0.8; }
+  100% { transform: scale(1) translate(var(--tx), var(--ty)); opacity: 0; }
+}
+
+/* -- SWIPE HINT ARROW (mobile-only) -- */
+.swipe-hint {
+  display: none;
+}
+@media (hover: none) and (pointer: coarse) {
+  .swipe-hint {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-secondary);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.6;
+    animation: swipeHintPulse 2.5s ease-in-out infinite;
+    pointer-events: none;
+    font-family: 'Poppins', sans-serif;
+  }
+  .swipe-hint .swipe-arrows {
+    display: flex;
+    gap: 3px;
+    font-size: 1rem;
+  }
+  .swipe-hint .swipe-arrows span {
+    animation: swipeArrowSlide 1.5s ease-in-out infinite;
+  }
+  .swipe-hint .swipe-arrows span:nth-child(2) { animation-delay: 0.15s; }
+  .swipe-hint .swipe-arrows span:nth-child(3) { animation-delay: 0.3s; }
+}
+@keyframes swipeHintPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+@keyframes swipeArrowSlide {
+  0%, 100% { transform: translateX(0); opacity: 0.4; }
+  50% { transform: translateX(4px); opacity: 1; }
+}
+
+/* -- TABLETS & SMALL DESKTOPS -- */
+@media screen and (max-width: 1432px) {
+  #contact-map { height: 250px; }
+}
+@media screen and (max-width: 970px) {
+  #contact-map { height: 220px; }
+  .aurora-blob { width: 250px !important; height: 250px !important; }
+}
+
+/* -- MOBILE (≤768px) -- */
+@media screen and (max-width: 768px) {
+  /* Hide desktop cursor on mobile */
+  .cursor-dot, .cursor-ring { display: none !important; }
+  .cursor-sparkle { display: none !important; }
+
+  /* Particles: keep visible but lighter for battery */
+  #particle-canvas { opacity: 0.5; }
+
+  /* Aurora blobs: keep but smaller and subtler */
+  .aurora-blob { 
+    width: 200px !important; 
+    height: 200px !important; 
+    opacity: 0.06 !important;
+    filter: blur(60px) !important;
+  }
+
+  /* Film grain: very subtle on mobile */
+  body::after { opacity: 0.015 !important; }
+
+  /* Transition bars: ensure full coverage on mobile */
+  .transition-bars { z-index: 99999 !important; }
+  .transition-bar { height: 20vh !important; }
+
+  /* Scroll progress: thinner on mobile */
+  .scroll-progress { height: 2px; }
+
+  /* Preloader: scale down slightly */
+  .pacman-loader { transform: scale(0.9); }
+  .preloader-counter { font-size: 2rem; }
+
+  /* Section titles: ensure gradient stays clean */
+  .main-title h2 span:not(.bg-text) {
+    animation: gradientFlow 5s ease-in-out infinite !important;
+  }
+}
+
+/* -- SMALL MOBILE (≤600px) -- */
+@media screen and (max-width: 600px) {
+  #contact-map { height: 180px; margin-bottom: 4rem; border-radius: 10px; }
+  .pacman-loader { transform: scale(0.8); }
+  .preloader-text { font-size: 0.8rem; letter-spacing: 3px; }
+  .preloader-counter { font-size: 1.8rem; }
+  .toast-notification { right: 10px; left: 10px; min-width: auto; max-width: none; }
+  .scroll-progress { height: 2px; }
+
+  /* Aurora smaller but still present */
+  .aurora-blob {
+    width: 150px !important;
+    height: 150px !important;
+    opacity: 0.04 !important;
+    filter: blur(50px) !important;
+  }
+
+  /* Film grain: subtle but present */
+  body::after { opacity: 0.01 !important; display: block !important; }
+}
+
+/* -- VERY SMALL MOBILE (≤400px) -- */
+@media screen and (max-width: 400px) {
+  .preloader-counter { font-size: 1.5rem; }
+  .pacman-loader { transform: scale(0.65); }
+  .aurora-blob { opacity: 0.03 !important; }
+  #particle-canvas { opacity: 0.35; }
+}

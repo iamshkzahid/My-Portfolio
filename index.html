@@ -10,9 +10,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Enhancement Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+    <link rel="stylesheet" href="./styles/enhancements.css">
 </head>
 <body class="main-content">
-    <div id="preloader"></div>
+    <canvas id="particle-canvas"></canvas>
+    <div id="preloader">
+        <div class="pacman-loader">
+            <div class="pacman"></div>
+        </div>
+        <div class="pacman-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <p class="preloader-text">Loading Portfolio</p>
+    </div>
     <header class="container header active" id="home">
         <div class="header-content">
             <div class="left-header">
@@ -32,9 +48,9 @@
                 </p>
                 <div class="btn-social-wrapper">
                          <div class="socials-container">
-                              <a data-social="Linkedin" style="--accent-color: #106bff;" href="https://www.linkedin.com/in/zahid-shaikh-b33119349/"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Linksys</title><path d="M19.871 0c-1.7024 0-3.082 1.38-3.082 3.082 0 1.7025 1.38 3.08 3.082 3.082 1.7026 0 3.082-1.3795 3.082-3.082 0-1.7024-1.3795-3.082-3.082-3.082ZM1.047.488V24h21.3105v-3.469H5.166V.488Zm7.156 0v17.156h14.154v-3.4707h-10.039V.488Z"/></svg></a>
+                              <a data-social="Linkedin" style="--accent-color: #106bff;" href="https://www.linkedin.com/in/zahid-shaikh-b33119349/" target="_blank" rel="noopener noreferrer"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Linksys</title><path d="M19.871 0c-1.7024 0-3.082 1.38-3.082 3.082 0 1.7025 1.38 3.08 3.082 3.082 1.7026 0 3.082-1.3795 3.082-3.082 0-1.7024-1.3795-3.082-3.082-3.082ZM1.047.488V24h21.3105v-3.469H5.166V.488Zm7.156 0v17.156h14.154v-3.4707h-10.039V.488Z"/></svg></a>
                          
-                              <a data-social="Github" style="--accent-color: #38142a;" href="https://github.com/iamshkzahid"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                              <a data-social="Github" style="--accent-color: #38142a;" href="https://github.com/iamshkzahid" target="_blank" rel="noopener noreferrer"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
                          </div>
                          <div class="btn-con">
                               <a href="./files/ZahidShaikh_WebDevelopment_Resume.pdf" download class="main-btn">
@@ -231,10 +247,10 @@
                     <div class="hover-items">
                         <h3>Fitness Tracker</h3>
                         <div class="icons">
-                            <a href="https://github.com/iamshkzahid/Fitness-Tracker" class="icon">
+                            <a href="https://github.com/iamshkzahid/Fitness-Tracker" class="icon" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://prime-coders-fitness-tracker.netlify.app/" class="icon">
+                            <a href="https://prime-coders-fitness-tracker.netlify.app/" class="icon" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -247,10 +263,10 @@
                     <div class="hover-items">
                         <h3>Code-Editor Live</h3>
                         <div class="icons">
-                            <a href="https://github.com/iamshkzahid/Code-Editor-Live" class="icon">
+                            <a href="https://github.com/iamshkzahid/Code-Editor-Live" class="icon" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://codeditor-live.netlify.app/" class="icon">
+                            <a href="https://codeditor-live.netlify.app/" class="icon" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -263,10 +279,10 @@
                     <div class="hover-items">
                         <h3>Match-3 Game (C + raylib)</h3>
                         <div class="icons">
-                            <a href="https://github.com/iamshkzahid/Match3-Game-with-raylib" class="icon">
+                            <a href="https://github.com/iamshkzahid/Match3-Game-with-raylib" class="icon" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://iamshkzahid.github.io/Match3-Game-with-raylib/" class="icon">
+                            <a href="https://iamshkzahid.github.io/Match3-Game-with-raylib/" class="icon" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -279,10 +295,10 @@
                     <div class="hover-items">
                         <h3>Ryze Ai Re-design</h3>
                         <div class="icons">
-                            <a href="https://github.com/iamshkzahid/ryze.ai_redesign" class="icon">
+                            <a href="https://github.com/iamshkzahid/ryze.ai_redesign" class="icon" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://ryze-ai-redesign-zahid.netlify.app/" class="icon">
+                            <a href="https://ryze-ai-redesign-zahid.netlify.app/" class="icon" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -487,9 +503,9 @@
                          <div class="contact-icons"> 
                             <div class="contact-icon">
                                 <div class="socials-container">
-                                    <a data-social="Linkedin" style="--accent-color: #106bff;" href="https://www.linkedin.com/in/zahid-shaikh-b33119349/"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Linksys</title><path d="M19.871 0c-1.7024 0-3.082 1.38-3.082 3.082 0 1.7025 1.38 3.08 3.082 3.082 1.7026 0 3.082-1.3795 3.082-3.082 0-1.7024-1.3795-3.082-3.082-3.082ZM1.047.488V24h21.3105v-3.469H5.166V.488Zm7.156 0v17.156h14.154v-3.4707h-10.039V.488Z"/></svg></a>
+                                    <a data-social="Linkedin" style="--accent-color: #106bff;" href="https://www.linkedin.com/in/zahid-shaikh-b33119349/" target="_blank" rel="noopener noreferrer"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Linksys</title><path d="M19.871 0c-1.7024 0-3.082 1.38-3.082 3.082 0 1.7025 1.38 3.08 3.082 3.082 1.7026 0 3.082-1.3795 3.082-3.082 0-1.7024-1.3795-3.082-3.082-3.082ZM1.047.488V24h21.3105v-3.469H5.166V.488Zm7.156 0v17.156h14.154v-3.4707h-10.039V.488Z"/></svg></a>
                                 
-                                    <a data-social="Github" style="--accent-color: #38142a;" href="https://github.com/iamshkzahid"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                                    <a data-social="Github" style="--accent-color: #38142a;" href="https://github.com/iamshkzahid" target="_blank" rel="noopener noreferrer"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
                                 </div>
                             </div>
                             
@@ -518,6 +534,8 @@
                         </form>
                     </div>
                 </div>
+                <!-- Leaflet Map — placed AFTER the contact-content-con, full-width -->
+                <div id="contact-map"></div>
             </div>
         </section>
     </main>
@@ -544,7 +562,11 @@
     <div class="theme-btn">
         <i class="fas fa-adjust"></i>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="enhancements.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

@@ -1,5 +1,8 @@
 // Page Navigation and Theme Toggle
 (function () {
+    // Map section IDs to their nav button data-id
+    var sectionIds = ['home', 'about', 'portfolio', 'contact'];
+
     [...document.querySelectorAll(".control")].forEach(button => {
         button.addEventListener("click", function() {
             document.querySelector(".active-btn").classList.remove("active-btn");
@@ -7,12 +10,46 @@
             const current = document.querySelector(".active");
             const next = document.getElementById(button.dataset.id);
 
-            current.classList.remove("active");
+            if (current === next) return;
 
-            setTimeout(() => {
+            // Update URL hash for persistence (so back button works)
+            history.replaceState(null, '', '#' + button.dataset.id);
+
+            // Use GSAP-powered transitions if available (from enhancements.js)
+            if (typeof window.switchSection === 'function') {
+                window.switchSection(current, next);
+            } else {
+                current.classList.remove("active");
                 next.classList.add("active");
-            }, 50);
+            }
         })
+    });
+
+    // On page load: restore section from URL hash
+    function restoreFromHash() {
+        var hash = window.location.hash.replace('#', '');
+        if (hash && sectionIds.indexOf(hash) !== -1 && hash !== 'home') {
+            var current = document.querySelector('.active');
+            var next = document.getElementById(hash);
+            if (current && next && current !== next) {
+                // Switch without animation (instant restore)
+                current.classList.remove('active');
+                next.classList.add('active');
+
+                // Update nav button highlight
+                document.querySelector('.active-btn').classList.remove('active-btn');
+                var targetBtn = document.querySelector('.control[data-id="' + hash + '"]');
+                if (targetBtn) targetBtn.classList.add('active-btn');
+            }
+        }
+    }
+    // Restore after DOM is ready but before animations
+    restoreFromHash();
+
+    // Open all external links in new tabs
+    document.querySelectorAll('a[href^="http"]').forEach(function(link) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
     });
     
     document.querySelector(".theme-btn").addEventListener("click", () => {
@@ -29,27 +66,7 @@ document.querySelectorAll(".control").forEach(btn => {
     });
 });
 
-// Animate skill bars on scroll into view
-(function() {
-    const observerOptions = {
-        threshold: 0.2,
-        rootMargin: '0px 0px -100px 0px'
-    };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Observe portfolio items and timeline items
-    document.querySelectorAll('.portfolio-item, .timeline-item, .about-item').forEach(el => {
-        observer.observe(el);
-    });
-})();
 
 // Smooth transitions for form inputs
 (function() {
@@ -86,20 +103,21 @@ document.querySelectorAll(".control").forEach(btn => {
 
         emailjs.send("service_apnl1br", "template_poykvvi", params)
             .then(() => {
-                alert("Message sent successfully!");
+                if (typeof window.showToast === 'function') {
+                    window.showToast('Message sent successfully!', 'success');
+                } else {
+                    alert("Message sent successfully!");
+                }
                 document.getElementById("contact-form").reset();
             })
             .catch(() => {
-                alert("Failed to send message. Please try again.");
+                if (typeof window.showToast === 'function') {
+                    window.showToast('Failed to send message. Please try again.', 'error');
+                } else {
+                    alert("Failed to send message. Please try again.");
+                }
             });
 
     });
 
 })();
-
-window.addEventListener("load", () => {
-    const preloader = document.getElementById("preloader");
-    if (preloader) {
-        preloader.style.display = "none";
-    }
-});
