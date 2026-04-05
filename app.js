@@ -30,21 +30,21 @@
             var current = document.querySelector('.active');
             var next = document.getElementById(hash);
             if (current && next && current !== next) {
-                // Switch without animation (instant restore)
+
                 current.classList.remove('active');
                 next.classList.add('active');
 
-                // Update nav button highlight
+
                 document.querySelector('.active-btn').classList.remove('active-btn');
                 var targetBtn = document.querySelector('.control[data-id="' + hash + '"]');
                 if (targetBtn) targetBtn.classList.add('active-btn');
             }
         }
     }
-    // Restore after DOM is ready but before animations
+
     restoreFromHash();
 
-    // Open all external links in new tabs
+
     document.querySelectorAll('a[href^="http"]').forEach(function(link) {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener noreferrer');
@@ -82,7 +82,7 @@ document.querySelectorAll(".control").forEach(btn => {
 //email logic
 
 // Email sending logic using EmailJS
-// Email sending logic using EmailJS
+
 (function () {
 
     emailjs.init("U6COWwfoZJe_kYDID");
