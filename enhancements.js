@@ -99,7 +99,7 @@
     var preloader = document.getElementById('preloader');
     if (!preloader) return;
 
-    // Add counter + progress bar dynamically
+    // Add counter & progress bar dynamically
     var progressWrap = document.createElement('div');
     progressWrap.className = 'preloader-progress';
     var progressBar = document.createElement('div');
@@ -114,7 +114,7 @@
 
     // Animate counter 0→100
     var count = 0;
-    var duration = 1600; // ms
+    var duration = 1600; 
     var interval = duration / 100;
     var countInterval = setInterval(function() {
       count++;
@@ -153,15 +153,12 @@
   }
 
   function onPreloaderDone() {
-    // Start particles
     initParticles();
-    // Run header entry
     runHeaderEntry();
   }
 
-  // ============================================================
   // 3. CINEMATIC HEADER ENTRY
-  // ============================================================
+
   function runHeaderEntry() {
     if (typeof gsap === 'undefined') return;
 
@@ -192,7 +189,7 @@
     if (nameEl) {
       tl.fromTo(nameEl, { opacity: 0 }, { opacity: 1, duration: 0.01 }, '-=0.2');
       tl.add(function() {
-        // Split and then animate letters
+        // animate letters
         splitTextToLetters();
         var letters = nameEl.querySelectorAll('.letter');
         if (letters.length) {
@@ -221,9 +218,8 @@
     }
   }
 
-  // ============================================================
   // 4. TRANSITION BARS (Cinematic Bar Wipe)
-  // ============================================================
+
   var transitionBars = [];
 
   function createTransitionBars() {
@@ -238,9 +234,9 @@
     document.body.appendChild(container);
   }
 
-  // ============================================================
+
   // 5. SECTION SWITCH (Cinematic Wipe Transition)
-  // ============================================================
+
   var isTransitioning = false;
 
   window.switchSection = function(currentEl, nextEl) {
@@ -280,15 +276,14 @@
       { scaleX: 0, duration: 0.35, stagger: 0.05, ease: 'power4.inOut' }
     );
 
-    // Animate section content as bars reveal
+
     tl.add(function() {
       animateSectionContent(nextEl.id);
     }, '-=0.25');
   };
 
-  // ============================================================
   // 6. SECTION CONTENT ENTRY ANIMATIONS
-  // ============================================================
+
   var animatedSections = {};
 
   function animateSectionContent(sectionId) {
