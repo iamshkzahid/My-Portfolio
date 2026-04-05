@@ -936,12 +936,10 @@
         var hoverItems = this.querySelector('.hover-items');
         if (!hoverItems) return;
 
-        // If clicking on a link inside the overlay, let it through
         if (e.target.closest('a.icon')) return;
 
-        // Toggle the overlay
         var isVisible = hoverItems.style.opacity === '1';
-        // Close all other overlays first
+
         portItems.forEach(function(pi) {
           var hi = pi.querySelector('.hover-items');
           if (hi) {
@@ -957,7 +955,6 @@
       });
     });
 
-    // Tap outside to close any open overlay
     document.addEventListener('click', function(e) {
       if (!e.target.closest('.portfolio-item')) {
         portItems.forEach(function(pi) {
@@ -971,9 +968,7 @@
     });
   }
 
-  // ============================================================
   // 27. MOBILE GYRO PARALLAX (device orientation for depth)
-  // ============================================================
   function initGyroParallax() {
     var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
@@ -983,7 +978,6 @@
     if (!leftHeader || !rightHeader) return;
 
     if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-      // iOS 13+ needs permission
       document.addEventListener('touchstart', function requestGyro() {
         DeviceOrientationEvent.requestPermission().then(function(state) {
           if (state === 'granted') {
@@ -1000,21 +994,19 @@
       var homeSection = document.getElementById('home');
       if (!homeSection || !homeSection.classList.contains('active')) return;
 
-      var gamma = e.gamma || 0; // Left-right tilt (-90 to 90)
-      var beta = e.beta || 0;   // Front-back tilt (-180 to 180)
+      var gamma = e.gamma || 0; 
+      var beta = e.beta || 0;   
 
-      // Normalize to -1 to 1 range
       var x = Math.max(-1, Math.min(1, gamma / 30));
-      var y = Math.max(-1, Math.min(1, (beta - 45) / 30)); // 45° as neutral
+      var y = Math.max(-1, Math.min(1, (beta - 45) / 30)); 
 
       leftHeader.style.transform = 'translate(' + (x * -6) + 'px, ' + (y * -4) + 'px)';
       rightHeader.style.transform = 'translate(' + (x * 4) + 'px, ' + (y * 3) + 'px)';
     }
   }
 
-  // ============================================================
   // INIT
-  // ============================================================
+
   document.addEventListener('DOMContentLoaded', function() {
     var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 

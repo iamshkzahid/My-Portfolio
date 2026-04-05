@@ -1,6 +1,5 @@
 // Page Navigation and Theme Toggle
 (function () {
-    // Map section IDs to their nav button data-id
     var sectionIds = ['home', 'about', 'portfolio', 'contact'];
 
     [...document.querySelectorAll(".control")].forEach(button => {
@@ -12,10 +11,10 @@
 
             if (current === next) return;
 
-            // Update URL hash for persistence (so back button works)
+            
             history.replaceState(null, '', '#' + button.dataset.id);
 
-            // Use GSAP-powered transitions if available (from enhancements.js)
+            // Use GSAP-powered transitions (from enhancements.js)
             if (typeof window.switchSection === 'function') {
                 window.switchSection(current, next);
             } else {
@@ -25,7 +24,6 @@
         })
     });
 
-    // On page load: restore section from URL hash
     function restoreFromHash() {
         var hash = window.location.hash.replace('#', '');
         if (hash && sectionIds.indexOf(hash) !== -1 && hash !== 'home') {
