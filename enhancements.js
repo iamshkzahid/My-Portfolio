@@ -1,10 +1,16 @@
-//   ENHANCEMENTS.JS 
+/* ============================================================
+   ENHANCEMENTS.JS — v3 NEXT-GEN
+   Industry-best animations: particles, cinematic transitions,
+   magnetic buttons, animated counters, glassmorphism tilt,
+   typewriter, text scramble, and more.
+   ============================================================ */
 
 (function() {
   'use strict';
 
+  // ============================================================
   // 1. INTERACTIVE PARTICLE BACKGROUND
-
+  // ============================================================
   function initParticles() {
     var canvas = document.getElementById('particle-canvas');
     if (!canvas) return;
@@ -92,14 +98,14 @@
     document.addEventListener('mouseleave', function() { mouse.x = null; mouse.y = null; });
   }
 
-
+  // ============================================================
   // 2. ENHANCED PRELOADER (with percentage counter)
- 
+  // ============================================================
   window.addEventListener('load', function() {
     var preloader = document.getElementById('preloader');
     if (!preloader) return;
 
-    // Add counter & progress bar dynamically
+    // Add counter + progress bar dynamically
     var progressWrap = document.createElement('div');
     progressWrap.className = 'preloader-progress';
     var progressBar = document.createElement('div');
@@ -114,7 +120,7 @@
 
     // Animate counter 0→100
     var count = 0;
-    var duration = 1600; 
+    var duration = 1600; // ms
     var interval = duration / 100;
     var countInterval = setInterval(function() {
       count++;
@@ -153,14 +159,26 @@
   }
 
   function onPreloaderDone() {
+    // Start particles
     initParticles();
+    // Run header entry
     runHeaderEntry();
   }
 
+  // ============================================================
   // 3. CINEMATIC HEADER ENTRY
-
+  // ============================================================
   function runHeaderEntry() {
-    if (typeof gsap === 'undefined') return;
+    // Selectors for hidden elements (hidden via CSS to prevent flash)
+    var revealSelectors = '.header-content .left-header .h-shape, .header-content .left-header .image, .header-content .right-header .name, .header-content .right-header p, .header-content .right-header .btn-social-wrapper';
+
+    if (typeof gsap === 'undefined') {
+      // Fallback: just make everything visible
+      document.querySelectorAll(revealSelectors).forEach(function(el) {
+        el.style.opacity = '1';
+      });
+      return;
+    }
 
     var hShape = document.querySelector('.header-content .left-header .h-shape');
     var headerImage = document.querySelector('.header-content .left-header .image');
@@ -189,7 +207,7 @@
     if (nameEl) {
       tl.fromTo(nameEl, { opacity: 0 }, { opacity: 1, duration: 0.01 }, '-=0.2');
       tl.add(function() {
-        // animate letters
+        // Split and then animate letters
         splitTextToLetters();
         var letters = nameEl.querySelectorAll('.letter');
         if (letters.length) {
@@ -218,8 +236,9 @@
     }
   }
 
+  // ============================================================
   // 4. TRANSITION BARS (Cinematic Bar Wipe)
-
+  // ============================================================
   var transitionBars = [];
 
   function createTransitionBars() {
@@ -234,9 +253,9 @@
     document.body.appendChild(container);
   }
 
-
+  // ============================================================
   // 5. SECTION SWITCH (Cinematic Wipe Transition)
-
+  // ============================================================
   var isTransitioning = false;
 
   window.switchSection = function(currentEl, nextEl) {
@@ -276,14 +295,15 @@
       { scaleX: 0, duration: 0.35, stagger: 0.05, ease: 'power4.inOut' }
     );
 
-
+    // Animate section content as bars reveal
     tl.add(function() {
       animateSectionContent(nextEl.id);
     }, '-=0.25');
   };
 
+  // ============================================================
   // 6. SECTION CONTENT ENTRY ANIMATIONS
-
+  // ============================================================
   var animatedSections = {};
 
   function animateSectionContent(sectionId) {
@@ -299,6 +319,7 @@
       var timelineItems = section.querySelectorAll('.timeline-item');
       var progressBars = section.querySelectorAll('.progress-bar');
 
+      // Stat cards: stagger scale + fade
       if (items.length) {
         gsap.fromTo(items,
           { y: 40, opacity: 0, scale: 0.9 },
@@ -308,6 +329,7 @@
       // Animated counters
       animateCounters(section);
 
+      // Timeline: alternating slide from left/right
       if (timelineItems.length) {
         for (var i = 0; i < timelineItems.length; i++) {
           var fromX = (i % 2 === 0) ? -40 : 40;
@@ -320,6 +342,7 @@
       // Skill bars fill
       animateSkillBars(section);
 
+      // Progress bar labels
       if (progressBars.length) {
         gsap.fromTo(progressBars,
           { opacity: 0 },
@@ -367,8 +390,9 @@
 
   window.animateSectionEntry = animateSectionContent;
 
+  // ============================================================
   // 7. ANIMATED COUNTERS (stat cards count up)
-
+  // ============================================================
   function animateCounters(section) {
     if (typeof gsap === 'undefined') return;
     var largeTexts = section.querySelectorAll('.large-text');
@@ -376,11 +400,11 @@
       var text = el.textContent.trim();
       var num = parseInt(text);
       if (isNaN(num)) {
-        // Text like "Active" — scramble reveal
+        // Text like "Active" — do a scramble reveal
         scrambleText(el, text);
         return;
       }
-      var suffix = text.replace(num.toString(), ''); 
+      var suffix = text.replace(num.toString(), ''); // e.g., "+"
       el.textContent = '0' + suffix;
       var obj = { val: 0 };
       gsap.to(obj, {
@@ -395,8 +419,9 @@
     });
   }
 
+  // ============================================================
   // 8. TEXT SCRAMBLE EFFECT
-
+  // ============================================================
   function scrambleText(el, finalText) {
     var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&*';
     var iterations = 0;
@@ -410,8 +435,9 @@
     }, 40);
   }
 
+  // ============================================================
   // 9. SKILL BARS FILL ANIMATION
-
+  // ============================================================
   function animateSkillBars(section) {
     var bars = section.querySelectorAll('.progress span');
     bars.forEach(function(bar) {
@@ -426,8 +452,9 @@
     });
   }
 
+  // ============================================================
   // 10. LETTER-BY-LETTER HOVER
-
+  // ============================================================
   var letterized = false;
   function splitTextToLetters() {
     var nameEl = document.querySelector('.header-content .right-header .name');
@@ -485,7 +512,9 @@
     });
   }
 
+  // ============================================================
   // 11. 3D TILT ON CARDS (About + Portfolio)
+  // ============================================================
   function initTiltEffect() {
     // About stat cards
     var aboutItems = document.querySelectorAll('.about-container .right-about .about-item');
@@ -517,8 +546,9 @@
     this.style.transform = '';
   }
 
+  // ============================================================
   // 12. MAGNETIC NAV BUTTONS
-
+  // ============================================================
   function initMagneticButtons() {
     if (window.innerWidth <= 768) return;
     var buttons = document.querySelectorAll('.control, .theme-btn');
@@ -541,8 +571,9 @@
     });
   }
 
+  // ============================================================
   // 13. SCROLL PROGRESS INDICATOR
-
+  // ============================================================
   function initScrollProgress() {
     var bar = document.createElement('div');
     bar.className = 'scroll-progress';
@@ -557,8 +588,9 @@
     });
   }
 
+  // ============================================================
   // 14. LEAFLET MAP
-
+  // ============================================================
   var mapInitialized = false;
   function initMap() {
     if (mapInitialized) return;
@@ -586,8 +618,9 @@
     setTimeout(function() { map.invalidateSize(); }, 300);
   }
 
+  // ============================================================
   // 15. TOAST NOTIFICATIONS
-
+  // ============================================================
   window.showToast = function(message, type) {
     type = type || 'success';
     var existing = document.querySelector('.toast-notification');
@@ -615,8 +648,9 @@
     }, 4000);
   };
 
+  // ============================================================
   // 16. CUSTOM CURSOR
-
+  // ============================================================
   function initCustomCursor() {
     if (window.matchMedia('(hover: none)').matches) return;
     if (window.innerWidth <= 768) return;
@@ -653,19 +687,25 @@
     });
   }
 
+  // ============================================================
   // 17. CURSOR SPARKLE PARTICLE TRAIL
-
+  // ============================================================
   function initCursorSparkles() {
     if (window.matchMedia('(hover: none)').matches) return;
     if (window.innerWidth <= 768) return;
 
     var colors = ['#27AE60', '#6fea9c', '#1abc9c', '#2ecc71', '#ffffff'];
     var lastTime = 0;
+    var maxSparkles = 30;
 
     document.addEventListener('mousemove', function(e) {
       var now = Date.now();
       if (now - lastTime < 50) return; // Throttle
       lastTime = now;
+
+      // Prevent DOM accumulation
+      var existing = document.querySelectorAll('.cursor-sparkle');
+      if (existing.length >= maxSparkles) return;
 
       var sparkle = document.createElement('div');
       sparkle.className = 'cursor-sparkle';
@@ -685,9 +725,9 @@
     });
   }
 
-
+  // ============================================================
   // 18. MOUSE PARALLAX ON HEADER
-
+  // ============================================================
   function initMouseParallax() {
     if (window.innerWidth <= 768) return;
 
@@ -711,8 +751,9 @@
     });
   }
 
+  // ============================================================
   // 19. MORPHING AURORA BLOBS (background)
-
+  // ============================================================
   function createAuroraBlobs() {
     for (var i = 1; i <= 3; i++) {
       var blob = document.createElement('div');
@@ -721,17 +762,19 @@
     }
   }
 
+  // ============================================================
   // 20. TYPING CURSOR ON PARAGRAPH
-
+  // ============================================================
   function addTypingCursor() {
     var p = document.querySelector('.header-content .right-header p');
     if (p) p.classList.add('typed');
   }
 
+  // ============================================================
   // 21. GLITCH EFFECT ON LETTER HOVER (enhanced)
-
+  // ============================================================
   function initGlitchLetters() {
-
+    // Wait for letters to be created by splitTextToLetters
     var observer = new MutationObserver(function() {
       var nameEl = document.querySelector('.letter-hover-target');
       if (!nameEl) return;
@@ -742,7 +785,7 @@
 
       letters.forEach(function(letter) {
         letter.addEventListener('mouseenter', function() {
-
+          // Randomly choose between glitch and animate.css effects
           if (Math.random() < 0.35) {
             this.classList.add('letter-glitch');
             var self = this;
@@ -757,8 +800,9 @@
     observer.observe(document.body, { childList: true, subtree: true });
   }
 
+  // ============================================================
   // 22. DRAMATIC THEME TOGGLE
-
+  // ============================================================
   function initThemeToggleFlash() {
     var themeBtn = document.querySelector('.theme-btn');
     if (!themeBtn) return;
@@ -785,17 +829,20 @@
     });
   }
 
+  // ============================================================
   // 23. STAT CARD GLOW AFTER COUNTING
-
+  // ============================================================
   function addCountedGlow() {
+    // Add glow class to about items after counters finish
     setTimeout(function() {
       var items = document.querySelectorAll('.about-container .right-about .about-item');
       items.forEach(function(item) { item.classList.add('counted'); });
     }, 2500);
   }
 
-  // 24. TOUCH SPARKLE BURST 
-
+  // ============================================================
+  // 24. TOUCH SPARKLE BURST (mobile replacement for cursor trail)
+  // ============================================================
   function initTouchSparkles() {
     var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
@@ -805,7 +852,7 @@
 
     document.addEventListener('touchstart', function(e) {
       var now = Date.now();
-      if (now - lastTap < 200) return; 
+      if (now - lastTap < 200) return; // Throttle
       lastTap = now;
 
       var touch = e.touches[0];
@@ -836,8 +883,9 @@
     }, { passive: true });
   }
 
+  // ============================================================
   // 25. SWIPE NAVIGATION (mobile gesture between sections)
-
+  // ============================================================
   function initSwipeNavigation() {
     var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
@@ -847,8 +895,9 @@
     var touchStartY = 0;
     var touchEndX = 0;
     var touchEndY = 0;
-    var minSwipe = 80; 
+    var minSwipe = 80; // minimum px for a swipe
 
+    // Create swipe hint element
     var hint = document.createElement('div');
     hint.className = 'swipe-hint';
     hint.innerHTML = '<span>Swipe to navigate</span><div class="swipe-arrows"><span>›</span><span>›</span><span>›</span></div>';
@@ -875,7 +924,7 @@
 
       // Only trigger if horizontal swipe is dominant
       if (Math.abs(diffX) < minSwipe) return;
-      if (Math.abs(diffY) > Math.abs(diffX) * 0.7) return; 
+      if (Math.abs(diffY) > Math.abs(diffX) * 0.7) return; // Too vertical
 
       // Find current section index
       var currentSection = document.querySelector('.active');
@@ -893,12 +942,14 @@
         nextIndex = currentIndex - 1;
       }
 
+      // Bounds check
       if (nextIndex < 0 || nextIndex >= sectionOrder.length) return;
 
       var nextId = sectionOrder[nextIndex];
       var nextSection = document.getElementById(nextId);
       if (!nextSection || nextSection === currentSection) return;
 
+      // Hide swipe hint on first successful swipe
       clearTimeout(hintTimeout);
       hint.style.transition = 'opacity 0.3s';
       hint.style.opacity = '0';
@@ -913,7 +964,7 @@
       // Update URL hash
       history.replaceState(null, '', '#' + nextId);
 
-      // cinematic transition
+      // Trigger cinematic transition
       if (typeof window.switchSection === 'function') {
         window.switchSection(currentSection, nextSection);
       } else {
@@ -923,8 +974,9 @@
     }, { passive: true });
   }
 
+  // ============================================================
   // 26. TOUCH-FRIENDLY PORTFOLIO OVERLAY
-
+  // ============================================================
   function initTouchPortfolio() {
     var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
@@ -936,10 +988,12 @@
         var hoverItems = this.querySelector('.hover-items');
         if (!hoverItems) return;
 
+        // If clicking on a link inside the overlay, let it through
         if (e.target.closest('a.icon')) return;
 
+        // Toggle the overlay
         var isVisible = hoverItems.style.opacity === '1';
-
+        // Close all other overlays first
         portItems.forEach(function(pi) {
           var hi = pi.querySelector('.hover-items');
           if (hi) {
@@ -955,6 +1009,7 @@
       });
     });
 
+    // Tap outside to close any open overlay
     document.addEventListener('click', function(e) {
       if (!e.target.closest('.portfolio-item')) {
         portItems.forEach(function(pi) {
@@ -968,7 +1023,9 @@
     });
   }
 
+  // ============================================================
   // 27. MOBILE GYRO PARALLAX (device orientation for depth)
+  // ============================================================
   function initGyroParallax() {
     var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
@@ -978,6 +1035,7 @@
     if (!leftHeader || !rightHeader) return;
 
     if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+      // iOS 13+ needs permission
       document.addEventListener('touchstart', function requestGyro() {
         DeviceOrientationEvent.requestPermission().then(function(state) {
           if (state === 'granted') {
@@ -994,19 +1052,21 @@
       var homeSection = document.getElementById('home');
       if (!homeSection || !homeSection.classList.contains('active')) return;
 
-      var gamma = e.gamma || 0; 
-      var beta = e.beta || 0;   
+      var gamma = e.gamma || 0; // Left-right tilt (-90 to 90)
+      var beta = e.beta || 0;   // Front-back tilt (-180 to 180)
 
+      // Normalize to -1 to 1 range
       var x = Math.max(-1, Math.min(1, gamma / 30));
-      var y = Math.max(-1, Math.min(1, (beta - 45) / 30)); 
+      var y = Math.max(-1, Math.min(1, (beta - 45) / 30)); // 45° as neutral
 
       leftHeader.style.transform = 'translate(' + (x * -6) + 'px, ' + (y * -4) + 'px)';
       rightHeader.style.transform = 'translate(' + (x * 4) + 'px, ' + (y * 3) + 'px)';
     }
   }
 
+  // ============================================================
   // INIT
-
+  // ============================================================
   document.addEventListener('DOMContentLoaded', function() {
     var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
