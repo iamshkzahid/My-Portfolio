@@ -785,7 +785,7 @@
 
   // 24. TOUCH SPARKLE BURST (mobile replacement for cursor trail)
   function initTouchSparkles() {
-    var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
 
     var colors = ['#27AE60', '#6fea9c', '#1abc9c', '#2ecc71', '#ffffff'];
@@ -826,7 +826,7 @@
 
   // 25. SWIPE NAVIGATION (mobile gesture between sections)
   function initSwipeNavigation() {
-    var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
 
     var sectionOrder = ['home', 'about', 'portfolio', 'contact'];
@@ -864,7 +864,7 @@
       if (Math.abs(diffY) > Math.abs(diffX) * 0.7) return; 
 
       // Find current section index
-      var currentSection = document.querySelector('.active');
+      var currentSection = document.querySelector('section.active, header.active');
       if (!currentSection) return;
       var currentId = currentSection.id;
       var currentIndex = sectionOrder.indexOf(currentId);
@@ -915,7 +915,7 @@
   // 26. TOUCH-FRIENDLY PORTFOLIO OVERLAY
   // ============================================================
   function initTouchPortfolio() {
-    var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
 
     var portItems = document.querySelectorAll('.portfolio-item');
@@ -964,7 +964,7 @@
   // 27. MOBILE GYRO PARALLAX (device orientation for depth)
   // ============================================================
   function initGyroParallax() {
-    var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
 
     var leftHeader = document.querySelector('.header-content .left-header');
@@ -1005,7 +1005,7 @@
   // INIT
   // ============================================================
   document.addEventListener('DOMContentLoaded', function() {
-    var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
     // Universal features (both desktop & mobile)
     createTransitionBars();
