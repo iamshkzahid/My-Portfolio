@@ -1,16 +1,11 @@
-/* ============================================================
-   ENHANCEMENTS.JS — v3 NEXT-GEN
-   Industry-best animations: particles, cinematic transitions,
-   magnetic buttons, animated counters, glassmorphism tilt,
-   typewriter, text scramble, and more.
-   ============================================================ */
+/* 
+   ENHANCEMENTS.JS — NEXT-GEN
+  */
 
 (function() {
   'use strict';
 
-  // ============================================================
   // 1. INTERACTIVE PARTICLE BACKGROUND
-  // ============================================================
   function initParticles() {
     var canvas = document.getElementById('particle-canvas');
     if (!canvas) return;
@@ -98,9 +93,7 @@
     document.addEventListener('mouseleave', function() { mouse.x = null; mouse.y = null; });
   }
 
-  // ============================================================
   // 2. ENHANCED PRELOADER (with percentage counter)
-  // ============================================================
   window.addEventListener('load', function() {
     var preloader = document.getElementById('preloader');
     if (!preloader) return;
@@ -120,7 +113,7 @@
 
     // Animate counter 0→100
     var count = 0;
-    var duration = 1600; // ms
+    var duration = 1600;
     var interval = duration / 100;
     var countInterval = setInterval(function() {
       count++;
@@ -161,15 +154,11 @@
   function onPreloaderDone() {
     // Start particles
     initParticles();
-    // Run header entry
     runHeaderEntry();
   }
 
-  // ============================================================
   // 3. CINEMATIC HEADER ENTRY
-  // ============================================================
   function runHeaderEntry() {
-    // Selectors for hidden elements (hidden via CSS to prevent flash)
     var revealSelectors = '.header-content .left-header .h-shape, .header-content .left-header .image, .header-content .right-header .name, .header-content .right-header p, .header-content .right-header .btn-social-wrapper';
 
     if (typeof gsap === 'undefined') {
@@ -218,7 +207,6 @@
         }
       });
     }
-    // Paragraph: clip-path reveal (left to right curtain)
     if (headerP) {
       tl.fromTo(headerP,
         { clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)', opacity: 1 },
@@ -226,7 +214,7 @@
         '-=0.2'
       );
     }
-    // Social + CV stagger up
+
     if (btnWrapper) {
       tl.fromTo(btnWrapper,
         { y: 25, opacity: 0 },
@@ -236,9 +224,7 @@
     }
   }
 
-  // ============================================================
   // 4. TRANSITION BARS (Cinematic Bar Wipe)
-  // ============================================================
   var transitionBars = [];
 
   function createTransitionBars() {
@@ -253,9 +239,7 @@
     document.body.appendChild(container);
   }
 
-  // ============================================================
   // 5. SECTION SWITCH (Cinematic Wipe Transition)
-  // ============================================================
   var isTransitioning = false;
 
   window.switchSection = function(currentEl, nextEl) {
@@ -286,7 +270,6 @@
       nextEl.classList.add('active');
     });
 
-    // Brief pause while covered (for drama)
     tl.to({}, { duration: 0.08 });
 
     // Bars sweep OUT to right
@@ -301,9 +284,7 @@
     }, '-=0.25');
   };
 
-  // ============================================================
   // 6. SECTION CONTENT ENTRY ANIMATIONS
-  // ============================================================
   var animatedSections = {};
 
   function animateSectionContent(sectionId) {
@@ -319,7 +300,6 @@
       var timelineItems = section.querySelectorAll('.timeline-item');
       var progressBars = section.querySelectorAll('.progress-bar');
 
-      // Stat cards: stagger scale + fade
       if (items.length) {
         gsap.fromTo(items,
           { y: 40, opacity: 0, scale: 0.9 },
@@ -390,9 +370,7 @@
 
   window.animateSectionEntry = animateSectionContent;
 
-  // ============================================================
-  // 7. ANIMATED COUNTERS (stat cards count up)
-  // ============================================================
+  // 7. ANIMATED COUNTERS 
   function animateCounters(section) {
     if (typeof gsap === 'undefined') return;
     var largeTexts = section.querySelectorAll('.large-text');
@@ -419,9 +397,7 @@
     });
   }
 
-  // ============================================================
   // 8. TEXT SCRAMBLE EFFECT
-  // ============================================================
   function scrambleText(el, finalText) {
     var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&*';
     var iterations = 0;
@@ -435,9 +411,7 @@
     }, 40);
   }
 
-  // ============================================================
   // 9. SKILL BARS FILL ANIMATION
-  // ============================================================
   function animateSkillBars(section) {
     var bars = section.querySelectorAll('.progress span');
     bars.forEach(function(bar) {
@@ -452,9 +426,7 @@
     });
   }
 
-  // ============================================================
   // 10. LETTER-BY-LETTER HOVER
-  // ============================================================
   var letterized = false;
   function splitTextToLetters() {
     var nameEl = document.querySelector('.header-content .right-header .name');
@@ -512,9 +484,7 @@
     });
   }
 
-  // ============================================================
   // 11. 3D TILT ON CARDS (About + Portfolio)
-  // ============================================================
   function initTiltEffect() {
     // About stat cards
     var aboutItems = document.querySelectorAll('.about-container .right-about .about-item');
@@ -546,9 +516,7 @@
     this.style.transform = '';
   }
 
-  // ============================================================
   // 12. MAGNETIC NAV BUTTONS
-  // ============================================================
   function initMagneticButtons() {
     if (window.innerWidth <= 768) return;
     var buttons = document.querySelectorAll('.control, .theme-btn');
@@ -571,9 +539,7 @@
     });
   }
 
-  // ============================================================
   // 13. SCROLL PROGRESS INDICATOR
-  // ============================================================
   function initScrollProgress() {
     var bar = document.createElement('div');
     bar.className = 'scroll-progress';
@@ -588,9 +554,7 @@
     });
   }
 
-  // ============================================================
   // 14. LEAFLET MAP
-  // ============================================================
   var mapInitialized = false;
   function initMap() {
     if (mapInitialized) return;
@@ -618,9 +582,7 @@
     setTimeout(function() { map.invalidateSize(); }, 300);
   }
 
-  // ============================================================
   // 15. TOAST NOTIFICATIONS
-  // ============================================================
   window.showToast = function(message, type) {
     type = type || 'success';
     var existing = document.querySelector('.toast-notification');
@@ -648,9 +610,7 @@
     }, 4000);
   };
 
-  // ============================================================
   // 16. CUSTOM CURSOR
-  // ============================================================
   function initCustomCursor() {
     if (window.matchMedia('(hover: none)').matches) return;
     if (window.innerWidth <= 768) return;
@@ -687,9 +647,7 @@
     });
   }
 
-  // ============================================================
-  // 17. CURSOR SPARKLE PARTICLE TRAIL
-  // ============================================================
+  // 17. CURSOR SPARKLE 
   function initCursorSparkles() {
     if (window.matchMedia('(hover: none)').matches) return;
     if (window.innerWidth <= 768) return;
@@ -700,10 +658,9 @@
 
     document.addEventListener('mousemove', function(e) {
       var now = Date.now();
-      if (now - lastTime < 50) return; // Throttle
+      if (now - lastTime < 50) return; 
       lastTime = now;
 
-      // Prevent DOM accumulation
       var existing = document.querySelectorAll('.cursor-sparkle');
       if (existing.length >= maxSparkles) return;
 
@@ -725,9 +682,7 @@
     });
   }
 
-  // ============================================================
   // 18. MOUSE PARALLAX ON HEADER
-  // ============================================================
   function initMouseParallax() {
     if (window.innerWidth <= 768) return;
 
@@ -751,9 +706,7 @@
     });
   }
 
-  // ============================================================
   // 19. MORPHING AURORA BLOBS (background)
-  // ============================================================
   function createAuroraBlobs() {
     for (var i = 1; i <= 3; i++) {
       var blob = document.createElement('div');
@@ -762,19 +715,14 @@
     }
   }
 
-  // ============================================================
   // 20. TYPING CURSOR ON PARAGRAPH
-  // ============================================================
   function addTypingCursor() {
     var p = document.querySelector('.header-content .right-header p');
     if (p) p.classList.add('typed');
   }
 
-  // ============================================================
   // 21. GLITCH EFFECT ON LETTER HOVER (enhanced)
-  // ============================================================
   function initGlitchLetters() {
-    // Wait for letters to be created by splitTextToLetters
     var observer = new MutationObserver(function() {
       var nameEl = document.querySelector('.letter-hover-target');
       if (!nameEl) return;
@@ -800,9 +748,7 @@
     observer.observe(document.body, { childList: true, subtree: true });
   }
 
-  // ============================================================
   // 22. DRAMATIC THEME TOGGLE
-  // ============================================================
   function initThemeToggleFlash() {
     var themeBtn = document.querySelector('.theme-btn');
     if (!themeBtn) return;
@@ -829,20 +775,15 @@
     });
   }
 
-  // ============================================================
   // 23. STAT CARD GLOW AFTER COUNTING
-  // ============================================================
   function addCountedGlow() {
-    // Add glow class to about items after counters finish
     setTimeout(function() {
       var items = document.querySelectorAll('.about-container .right-about .about-item');
       items.forEach(function(item) { item.classList.add('counted'); });
     }, 2500);
   }
 
-  // ============================================================
   // 24. TOUCH SPARKLE BURST (mobile replacement for cursor trail)
-  // ============================================================
   function initTouchSparkles() {
     var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
@@ -852,13 +793,13 @@
 
     document.addEventListener('touchstart', function(e) {
       var now = Date.now();
-      if (now - lastTap < 200) return; // Throttle
+      if (now - lastTap < 200) return; 
       lastTap = now;
 
       var touch = e.touches[0];
       if (!touch) return;
 
-      // Create burst of 8 sparkles radiating outward
+      // Create burst of 8 sparkles outward
       for (var i = 0; i < 8; i++) {
         var sparkle = document.createElement('div');
         sparkle.className = 'touch-sparkle';
@@ -883,9 +824,7 @@
     }, { passive: true });
   }
 
-  // ============================================================
   // 25. SWIPE NAVIGATION (mobile gesture between sections)
-  // ============================================================
   function initSwipeNavigation() {
     var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
@@ -903,7 +842,6 @@
     hint.innerHTML = '<span>Swipe to navigate</span><div class="swipe-arrows"><span>›</span><span>›</span><span>›</span></div>';
     document.body.appendChild(hint);
 
-    // Auto-hide swipe hint after 6 seconds or first swipe
     var hintTimeout = setTimeout(function() {
       hint.style.transition = 'opacity 0.5s';
       hint.style.opacity = '0';
@@ -922,9 +860,8 @@
       var diffX = touchEndX - touchStartX;
       var diffY = touchEndY - touchStartY;
 
-      // Only trigger if horizontal swipe is dominant
       if (Math.abs(diffX) < minSwipe) return;
-      if (Math.abs(diffY) > Math.abs(diffX) * 0.7) return; // Too vertical
+      if (Math.abs(diffY) > Math.abs(diffX) * 0.7) return; 
 
       // Find current section index
       var currentSection = document.querySelector('.active');
