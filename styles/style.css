@@ -268,60 +268,7 @@ section {
 .about-stats {
   padding-bottom: 4rem;
 }
-.about-stats .progress-bars {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 2rem;
-}
-.about-stats .progress-bars .progress-bar {
-  display: flex;
-  flex-direction: column;
-}
-.about-stats .progress-bars .progress-bar .prog-title {
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.about-stats .progress-bars .progress-bar .progress-con {
-  display: flex;
-  align-items: center;
-}
-.about-stats .progress-bars .progress-bar .progress-con .prog-text {
-  color: var(--color-grey-2);
-}
-.about-stats .progress-bars .progress-bar .progress-con .progress {
-  width: 100%;
-  height: 0.45rem;
-  background-color: var(--color-grey-4);
-  margin-left: 1rem;
-  position: relative;
-}
-.about-stats .progress-bars .progress-bar .progress-con .progress span {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background-color: var(--color-secondary);
-  transition: all 0.4s ease-in-out;
-  width: 60%;
-}
-.about-stats .progress-bars .progress-bar .progress-con .progress .html {
-  width: 95%;
-}
-.about-stats .progress-bars .progress-bar .progress-con .progress .css {
-  width: 95%;
-}
-.about-stats .progress-bars .progress-bar .progress-con .progress .js {
-  width: 75%;
-}
-.about-stats .progress-bars .progress-bar .progress-con .progress .react {
-  width: 75%;
-}
-.about-stats .progress-bars .progress-bar .progress-con .progress .node {
-  width: 98%;
-}
-.about-stats .progress-bars .progress-bar .progress-con .progress .python {
-  width: 70%;
-}
+
 
 .stat-title {
   text-transform: uppercase;
@@ -405,71 +352,8 @@ section {
   grid-gap: 2rem;
   margin-top: 3rem;
 }
-.portfolios .portfolio-item {
-  position: relative;
-  border-radius: 15px;
-}
-.portfolios .portfolio-item img {
-  width: 100%;
-  height: 300px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 15px;
-}
-.portfolios .portfolio-item .hover-items {
-  width: 100%;
-  height: 100%;
-  background-color: var(--color-secondary);
-  position: absolute;
-  left: 0;
-  top: 0;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  opacity: 0;
-  transform: scale(0);
-  transition: all 0.4s ease-in-out;
-}
-.portfolios .portfolio-item .hover-items h3 {
-  font-size: 1.5rem;
-  color: var(--color-white);
-  margin-bottom: 1.5rem;
-}
-.portfolios .portfolio-item .hover-items .icons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.portfolios .portfolio-item .hover-items .icons .icon {
-  background-color: var(--color-primary);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 1rem;
-  cursor: pointer;
-  transition: all 0.4s ease-in-out;
-}
-.portfolios .portfolio-item .hover-items .icons .icon i {
-  font-size: 1.5rem;
-  color: var(--color-white);
-  margin: 0 1rem;
-}
-.portfolios .portfolio-item .hover-items .icons .icon:hover {
-  background-color: var(--color-white);
-}
-.portfolios .portfolio-item .hover-items .icons .icon:hover i {
-  color: var(--color-primary);
-}
+/* REMOVED OLD PORTFOLIO STYLES */
 
-.portfolio-item:hover .hover-items {
-  opacity: 1;
-  transform: scale(1);
-}
 
 .blogs {
   display: grid;
@@ -1015,3 +899,646 @@ section {
   }
 }
 /*# sourceMappingURL=style.css.map */
+/* === 2026 Skills Bento Grid === */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+  margin-top: 2rem;
+}
+.skill-category {
+  background-color: var(--color-grey-5);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+.skill-category:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-secondary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.skill-cat-title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+}
+.skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+.skill-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  color: var(--color-white);
+  border: 1px solid var(--color-grey-4);
+  transition: all 0.3s ease;
+}
+.skill-badge:hover {
+  background-color: var(--color-grey-4);
+  border-color: var(--color-white);
+}
+.skill-badge img {
+  width: 18px;
+  height: 18px;
+}
+.light-mode .skill-badge img.invert-dark {
+  filter: invert(1);
+}
+
+/* === Portfolio Card Upgrades === */
+.portfolio-item .hover-items {
+  padding: 2rem;
+  text-align: center;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 100%);
+}
+.proj-desc {
+  font-size: 0.9rem;
+  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+.proj-stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.proj-stack .badge {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  padding: 0.3rem 0.6rem;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* === Floating Label Contact Form === */
+.floating-group {
+  position: relative;
+  width: 100%;
+}
+.floating-group label {
+  position: absolute;
+  top: 50%;
+  left: 1.1rem;
+  transform: translateY(-50%);
+  color: var(--color-grey-2);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  background-color: var(--color-grey-5);
+  padding: 0 0.3rem;
+  font-size: 1rem;
+}
+.floating-group textarea ~ label {
+  top: 1.5rem;
+}
+.floating-group input:focus ~ label, 
+.floating-group input:not(:placeholder-shown) ~ label,
+.floating-group textarea:focus ~ label,
+.floating-group textarea:not(:placeholder-shown) ~ label {
+  top: 0;
+  font-size: 0.8rem;
+  color: var(--color-secondary);
+}
+
+/* Validation states */
+.floating-group input:valid:not(:placeholder-shown),
+.floating-group 
+/* === 2026 Premium Portfolio Card Upgrades === */
+.portfolios .portfolio-item {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background-color: var(--color-grey-5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transform-style: preserve-3d;
+}
+
+.portfolios .portfolio-item:hover,
+.portfolios .portfolio-item:focus-within {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(39, 174, 96, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+  z-index: 10;
+}
+
+.portfolios .portfolio-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: skewX(-20deg);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.portfolios .portfolio-item:hover::before {
+  animation: shimmerSweep 0.8s forwards;
+}
+
+@keyframes shimmerSweep {
+  100% { left: 200%; }
+}
+
+.portfolios .portfolio-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: all 0.4s ease;
+}
+
+.portfolios .portfolio-item:hover img {
+  transform: scale(1.08);
+  filter: blur(2px) brightness(0.8);
+}
+
+.portfolios .portfolio-item .hover-items {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(39, 174, 96, 0.2) 100%);
+  backdrop-filter: blur(8px);
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+.portfolios .portfolio-item:hover .hover-items,
+.portfolios .portfolio-item:focus-within .hover-items {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Staggered Animations */
+.hover-items h3 {
+  font-size: 1.5rem;
+  color: var(--color-white);
+  margin-bottom: 0.8rem;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.portfolio-item:hover .hover-items h3,
+.portfolio-item:focus-within .hover-items h3 {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+
+.proj-desc {
+  font-size: 0.9rem;
+  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.3s ease;
+}
+.portfolio-item:hover .proj-desc,
+.portfolio-item:focus-within .proj-desc {
+  opacity: 0.9;
+  transform: translateY(0);
+  transition-delay: 0.15s;
+}
+
+.proj-stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.3s ease;
+}
+.portfolio-item:hover .proj-stack,
+.portfolio-item:focus-within .proj-stack {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.2s;
+}
+
+.proj-stack .badge {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+.proj-stack .badge:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 10px rgba(39, 174, 96, 0.4);
+}
+
+.portfolios .portfolio-item .hover-items .icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.portfolio-item:hover .hover-items .icons,
+.portfolio-item:focus-within .hover-items .icons {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.25s;
+}
+
+.portfolios .portfolio-item .hover-items .icons .icon {
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.portfolios .portfolio-item .hover-items .icons .icon i {
+  font-size: 1.2rem;
+  color: var(--color-white);
+}
+.portfolios .portfolio-item .hover-items .icons .icon:hover,
+.portfolios .portfolio-item .hover-items .icons .icon:focus-visible {
+  background-color: var(--color-white);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.portfolios .portfolio-item .hover-items .icons .icon:hover i,
+.portfolios .portfolio-item .hover-items .icons .icon:focus-visible i {
+  color: var(--color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolios .portfolio-item,
+  .portfolios .portfolio-item img,
+  .hover-items *,
+  .portfolios .portfolio-item::before {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 30px;
+  font-size: 0.9rem;
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+.hero-badge:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-secondary);
+}
+.dsa-badge i {
+  color: #FFD700;
+}
+.github-badge i {
+  color: var(--color-white);
+}
+
+
+/* === Light Mode Portfolio Card Overrides === */
+body.light-mode .portfolios .portfolio-item .hover-items {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(39, 174, 96, 0.18) 100%);
+}
+
+body.light-mode .portfolios .portfolio-item .hover-items h3,
+body.light-mode .portfolios .portfolio-item .hover-items .proj-desc {
+  color: #1a1a1a;
+  text-shadow: none;
+}
+
+body.light-mode .portfolios .portfolio-item .hover-items .proj-stack .badge {
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: #111;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  text-shadow: none;
+}
+
+body.light-mode .portfolios .portfolio-item .hover-items .proj-stack .badge:hover {
+  background: rgba(0, 0, 0, 0.12);
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 10px rgba(39, 174, 96, 0.3);
+}
+
+body.light-mode .portfolios .portfolio-item .hover-items .icons .icon {
+  background-color: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+body.light-mode .portfolios .portfolio-item .hover-items .icons .icon i {
+  color: #111;
+}
+
+body.light-mode .portfolios .portfolio-item .hover-items .icons .icon:hover,
+body.light-mode .portfolios .portfolio-item .hover-items .icons .icon:focus-visible {
+  background-color: var(--color-primary); /* Uses dark text/bg if light mode maps it appropriately, typically inverted */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+body.light-mode .portfolios .portfolio-item .hover-items .icons .icon:hover i,
+body.light-mode .portfolios .portfolio-item .hover-items .icons .icon:focus-visible i {
+  color: var(--color-white);
+}
+
+
+/* === Capability Matrix Upgrades === */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem; /* Better breathing room between cards */
+  margin-top: 2.5rem;
+}
+
+.skill-category {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-grey-5);
+  padding: 1.8rem; /* slightly puffier padding */
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08); /* sharper gradient border */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  height: 100%;
+}
+
+.skill-category:hover {
+  transform: translateY(-5px);
+  border-color: rgba(var(--color-secondary-rgb, 39, 174, 96), 0.5);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.skill-badges {
+  flex-grow: 1; /* evenly pushes content if card grows */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.skill-badge {
+  padding: 0.45rem 1rem; /* Extremely consistent padding */
+  border-radius: 25px;
+  line-height: normal;
+}
+.skill-badge:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 3px;
+  background-color: var(--color-grey-4);
+  border-color: var(--color-white);
+}
+
+/* Light mode overrides for badge contrast specifically requested for WCAG AA */
+body.light-mode .skill-badge {
+  color: #111;
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}
+
+
+/* === Two-Tier Skills Layout === */
+.skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem; /* Increased vertical spacing for structural separation */
+  margin-top: 2rem;
+}
+
+.skills-tier {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+}
+
+.skill-category {
+  background-color: var(--color-grey-5);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Category Header & Subtitles */
+.category-header {
+  margin-bottom: 1.5rem;
+}
+
+.skill-cat-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.3rem;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.skill-subtitle {
+  font-size: 0.85rem;
+  color: var(--color-grey-3);
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Row 1 Hierarchy: Stronger Engineering Stack */
+.primary-stack .skill-category {
+  padding: 2.5rem 2rem; /* Increased height/padding */
+  min-height: 280px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-bottom: 3px solid var(--color-secondary);
+}
+
+.primary-stack .skill-cat-title {
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(39, 174, 96, 0.3);
+}
+
+.primary-stack .skill-category:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(39, 174, 96, 0.25);
+  border-color: rgba(39, 174, 96, 0.6);
+  border-bottom-width: 5px;
+}
+
+/* Row 2 Hierarchy: Foundation Stack (Secondary) */
+.foundation-stack .skill-category {
+  padding: 1.8rem;
+  min-height: 240px;
+  opacity: 0.9;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.foundation-stack .skill-category:hover {
+  opacity: 1;
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.skill-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 1.1rem;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.skill-badge:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: var(--color-secondary);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.skill-badge img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Capability Strip */
+.skills-capability-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 1rem;
+  color: var(--color-grey-2);
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.skills-capability-strip .dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-secondary);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--color-secondary);
+}
+
+.skills-capability-strip span:not(.dot):hover {
+  color: var(--color-white);
+  text-shadow: 0 0 8px var(--color-secondary);
+  transition: all 0.3s ease;
+}
+
+/* Animation Base */
+.skills-tier .skill-category {
+  animation: fadeUp 0.6s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.skills-tier .skill-category:nth-child(1) { animation-delay: 0.1s; }
+.skills-tier .skill-category:nth-child(2) { animation-delay: 0.2s; }
+.skills-tier .skill-category:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Theme Adaptive (Light Mode Compatibility) */
+body.light-mode .skills-capability-strip {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: var(--color-grey-1);
+}
+
+@media screen and (max-width: 1000px) {
+  .skills-tier {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .skills-tier {
+    grid-template-columns: 1fr;
+  }
+  .skills-capability-strip {
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-radius: 20px;
+    padding: 1rem;
+  }
+  .skills-capability-strip .dot {
+    display: none;
+  }
+}

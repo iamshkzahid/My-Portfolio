@@ -5,8 +5,13 @@
 
     [...document.querySelectorAll(".control")].forEach(button => {
         button.addEventListener("click", function() {
-            document.querySelector(".active-btn").classList.remove("active-btn");
+            var currActiveBtn = document.querySelector(".active-btn");
+            if (currActiveBtn) {
+                currActiveBtn.classList.remove("active-btn");
+                currActiveBtn.removeAttribute("aria-current");
+            }
             this.classList.add("active-btn");
+            this.setAttribute("aria-current", "page");
             const current = document.querySelector(".active");
             const next = document.getElementById(button.dataset.id);
 
@@ -40,9 +45,16 @@
                 next.classList.add('active');
 
                 // Update nav button highlight
-                document.querySelector('.active-btn').classList.remove('active-btn');
+                var currBtn = document.querySelector('.active-btn');
+                if (currBtn) {
+                    currBtn.classList.remove('active-btn');
+                    currBtn.removeAttribute('aria-current');
+                }
                 var targetBtn = document.querySelector('.control[data-id="' + hash + '"]');
-                if (targetBtn) targetBtn.classList.add('active-btn');
+                if (targetBtn) {
+                    targetBtn.classList.add('active-btn');
+                    targetBtn.setAttribute('aria-current', 'page');
+                }
             }
         }
     }

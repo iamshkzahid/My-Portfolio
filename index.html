@@ -27,6 +27,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
     <link rel="stylesheet" href="./styles/enhancements.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Zahid Shaikh",
+      "jobTitle": "Full-Stack Developer",
+      "url": "https://iamzahid.netlify.app/",
+      "sameAs": [
+        "https://www.linkedin.com/in/zahid-shaikh-b33119349/",
+        "https://github.com/iamshkzahid"
+      ]
+    }
+    </script>
 </head>
 <body class="main-content">
     <canvas id="particle-canvas"></canvas>
@@ -47,15 +60,13 @@
             <div class="left-header">
                 <div class="h-shape"></div>
                 <div class="image">
-                    <img src="img/myimg.jpeg" alt="Zahid Shaikh — Full-Stack Developer">
+                    <img src="img/myimg.jpeg" loading="lazy" decoding="async" alt="Zahid Shaikh — Full-Stack Developer">
                 </div>
             </div>
             <div class="right-header">
                 <h1 class="name">Hi, I'm <span>Zahid Shaikh.</span><br>A Full-Stack Developer</h1>
                 <p>
-                    I'm a Full-Stack Developer,<br>
-                    Computer Science student passionate about building<br>
-                    real-world apps. I enjoy turning ideas into clean interfaces<br> and functional systems.
+                    I'm a Full-Stack Developer specializing in the MERN stack. I build scalable web applications and solve complex algorithmic challenges. I turn complex computer science concepts into<br>clean, accessible web experiences.
                 </p>
                 <div class="btn-social-wrapper">
                          <div class="socials-container">
@@ -120,126 +131,146 @@
                     </div>
                 </div>
             </div>
-            <div class="about-stats">
+                        <div class="about-stats">
                 <h4 class="stat-title">My Skills</h4>
-                <div class="progress-bars">
-                    <div class="progress-bar">
-                        <p class="prog-title">html5, css3, javascript</p>
-                        <div class="progress-con">
-                            <p class="prog-text">95%</p>
-                            <div class="progress">
-                                <span class="html"></span>
+                <div class="skills-grid">
+                    
+                    <!-- Row 1: Primary Engineering Stack -->
+                    <div class="skills-tier primary-stack">
+                        <div class="skill-category">
+                            <div class="category-header">
+                                <h5 class="skill-cat-title"><i class="fas fa-desktop"></i> Frontend</h5>
+                                <p class="skill-subtitle">Component-driven UI engineering</p>
+                            </div>
+                            <div class="skill-badges">
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" loading="lazy"/> HTML5</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" loading="lazy"/> CSS3</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" loading="lazy"/> Tailwind CSS</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" loading="lazy"/> Bootstrap 5</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" loading="lazy"/> React.js</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" alt="Next.js" class="invert-dark" loading="lazy"/> Next.js</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redux/redux-original.svg" alt="Redux" loading="lazy"/> Redux</span>
+                                <span class="skill-badge" tabindex="0">GSAP</span>
+                                <span class="skill-badge" tabindex="0">Responsive Design</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <div class="category-header">
+                                <h5 class="skill-cat-title"><i class="fas fa-server"></i> Backend</h5>
+                                <p class="skill-subtitle">Server-side APIs & authentication</p>
+                            </div>
+                            <div class="skill-badges">
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" loading="lazy"/> Python</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" alt="C++" loading="lazy"/> C++</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java" loading="lazy"/> Java</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js" loading="lazy"/> Node.js</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" alt="Express" class="invert-dark" loading="lazy"/> Express.js</span>
+                                <span class="skill-badge" tabindex="0">REST APIs</span>
+                                <span class="skill-badge" tabindex="0">Auth (JWT)</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <div class="category-header">
+                                <h5 class="skill-cat-title"><i class="fas fa-database"></i> Database</h5>
+                                <p class="skill-subtitle">Data modeling & persistence layers</p>
+                            </div>
+                            <div class="skill-badges">
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="MongoDB" loading="lazy"/> MongoDB</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongoose/mongoose-original.svg" alt="Mongoose" loading="lazy"/> Mongoose</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" loading="lazy"/> PostgreSQL</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL" loading="lazy"/> MySQL</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg" alt="SQL" loading="lazy"/> SQL</span>
                             </div>
                         </div>
                     </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">c, c++, java</p>
-                        <div class="progress-con">
-                            <p class="prog-text">95%</p>
-                            <div class="progress">
-                                <span class="css"></span>
+
+                    <!-- Row 2: Engineering Foundations -->
+                    <div class="skills-tier foundation-stack">
+                        <div class="skill-category">
+                            <div class="category-header">
+                                <h5 class="skill-cat-title"><i class="fas fa-laptop-code"></i> Core CS</h5>
+                                <p class="skill-subtitle">Algorithmic & system fundamentals</p>
+                            </div>
+                            <div class="skill-badges">
+                                <span class="skill-badge" tabindex="0">Data Structures</span>
+                                <span class="skill-badge" tabindex="0">Algorithms</span>
+                                <span class="skill-badge" tabindex="0">OOP</span>
+                                <span class="skill-badge" tabindex="0">Operating Systems</span>
+                                <span class="skill-badge" tabindex="0">Computer Networks</span>
+                                <span class="skill-badge" tabindex="0">DBMS</span>
+                                <span class="skill-badge" tabindex="0">RDBMS</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <div class="category-header">
+                                <h5 class="skill-cat-title"><i class="fas fa-network-wired"></i> Architecture & APIs</h5>
+                                <p class="skill-subtitle">Application structure & communication layers</p>
+                            </div>
+                            <div class="skill-badges">
+                                <span class="skill-badge" tabindex="0">REST API Design</span>
+                                <span class="skill-badge" tabindex="0">MVC Pattern</span>
+                                <span class="skill-badge" tabindex="0">Client–Server Model</span>
+                                <span class="skill-badge" tabindex="0">State Management</span>
+                                <span class="skill-badge" tabindex="0">Event-Driven Systems</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <div class="category-header">
+                                <h5 class="skill-cat-title"><i class="fas fa-tools"></i> Tools & DevOps</h5>
+                                <p class="skill-subtitle">Workflow, deployment & environment tooling</p>
+                            </div>
+                            <div class="skill-badges">
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" loading="lazy"/> Git</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub" class="invert-dark" loading="lazy"/> GitHub Flow</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt="Linux" loading="lazy"/> Linux</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kalilinux/kalilinux-original.svg" alt="Kali Linux" loading="lazy"/> Kali Linux</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" alt="Postman" loading="lazy"/> Postman</span>
+                                <span class="skill-badge" tabindex="0">Netlify</span>
+                                <span class="skill-badge" tabindex="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg" alt="Vercel" class="invert-dark" loading="lazy"/> Vercel</span>
+                                <span class="skill-badge" tabindex="0">Environment Variables</span>
                             </div>
                         </div>
                     </div>
-                    <div class="progress-bar">
-                        <p class="prog-title"> DSA, OOPS, Problem Solving</p>
-                        <div class="progress-con">
-                            <p class="prog-text">75%</p>
-                            <div class="progress">
-                                <span class="js"></span>
-                            </div>
-                        </div>
+
+                    <!-- Capability Strip -->
+                    <div class="skills-capability-strip">
+                        <span>Build APIs</span>
+                        <span class="dot"></span>
+                        <span>Real-time Apps</span>
+                        <span class="dot"></span>
+                        <span>Authentication Systems</span>
+                        <span class="dot"></span>
+                        <span>Deploy Full-Stack Applications</span>
                     </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">MERN Stack</p>
-                        <div class="progress-con">
-                            <p class="prog-text">75%</p>
-                            <div class="progress">
-                                <span class="react"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">Git, GitHub, kali linux</p>
-                        <div class="progress-con">
-                            <p class="prog-text">98%</p>
-                            <div class="progress">
-                                <span class="node"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">Python, AI</p>
-                        <div class="progress-con">
-                            <p class="prog-text">70%</p>
-                            <div class="progress">
-                                <span class="python"></span>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
-            <h4 class="stat-title">My Timeline</h4>
+            
+            <h4 class="stat-title">My Experience & Education</h4>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
+                        <i class="fas fa-university"></i>
                     </div>
-                    <p class="tl-duration">2025 – PRESENT</p>
-                    <h5>B.Tech CS<span> - PW Institute of Innovation, Pune</span></h5>
-                    <p>
-                        Building strong foundations in Data Structures, Algorithms, and Software Development while exploring Artificial Intelligence, Cybersecurity, and Cloud Computing.
-                    </p>
+                    <p class="tl-duration">2025</p>
+                    <h5>B.Tech Computer Science<span> - PWIOI</span></h5>
+                    <p>Focusing on algorithms, system design fundamentals, and cloud architecture.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
+                        <i class="fas fa-code"></i>
                     </div>
-                    <p class="tl-duration">2025 – PRESENT</p>
-                    <h5>Problem  Solving &  Competitive  Programming<span> - codeforces,leetcode</span></h5>
-                    <p>
-                        Actively solving DSA problems on platforms like Codeforces and strengthening logical thinking for technical interview preparation.
-                    </p>
+                    <p class="tl-duration">2026 – PRESENT</p>
+                    <h5>Competitive Programming<span> - LeetCode & Codeforces</span></h5>
+                    <p>Solved 300+ DSA problems across platforms, deepening expertise in core computer science algorithms and data structures.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
+                        <i class="fas fa-laptop-code"></i>
                     </div>
-                    <p class="tl-duration">2026 – 2027</p>
-                    <h5>Full-Stack Development Projects<span> - PWIOI</span></h5>
-                    <p>
-                        Developing real-world applications using Modern Tech stacks to build practical engineering experience.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <p class="tl-duration">2026 – 2027</p>
-                    <h5>Open Source & Internship<span> - Preparation</span></h5>
-                    <p>
-                        Contributing to GitHub projects, collaborating with developers, and preparing for technical internships through strong portfolio development.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <p class="tl-duration">2027 – 2028</p>
-                    <h5>Advanced Specialization Track<span></span></h5>
-                    <p>
-                        Focusing deeply on Artificial Intelligence, DevOps or Cloud Computing, SDE roles through structured learning and applied technical projects.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <p class="tl-duration">2028 – 2029</p>
-                    <h5>Industry-Ready Software Engineer<span> - FAANG, MAANG</span></h5>
-                    <p>
-                       Completing 1000+ DSA problems, building a flagship project, and becoming placement-ready for software engineering roles at product-based companies.
-                    </p>
+                    <p class="tl-duration">2028</p>
+                    <h5>Full-Stack Development<span> - MERN Stack</span></h5>
+                    <p>Built multiple scalable MERN-stack applications implementing RESTful APIs, JWT authentication, and complex state management.</p>
                 </div>
             </div>
         </section>
@@ -250,18 +281,24 @@
             <p class="port-text">
                 Here is some of my work that I've done in various programming languages.
             </p>
-            <div class="portfolios">
+                        <div class="portfolios">
                 <div class="portfolio-item">
                     <div class="image">
-                        <img src="img/port1.jpg" alt="Fitness Tracker Project">
+                        <img src="img/port1.jpg" alt="Fitness Tracker Project" loading="lazy" decoding="async">
                     </div>
                     <div class="hover-items">
                         <h3>Fitness Tracker</h3>
+                        <p class="proj-desc">Fitness Tracker Web Application this project demonstrates dynamic UI updates, client-side authentication, and persistent data handling using localStorage.</p>
+                        <div class="proj-stack">
+                            <span class="badge">HTML5</span>
+                            <span class="badge">CSS3</span>
+                            <span class="badge">JavaScript</span>
+                        </div>
                         <div class="icons">
-                            <a href="https://github.com/iamshkzahid/Fitness-Tracker" class="icon" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/iamshkzahid/Fitness-Tracker" class="icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://prime-coders-fitness-tracker.netlify.app/" class="icon" target="_blank" rel="noopener noreferrer">
+                            <a href="https://prime-coders-fitness-tracker.netlify.app/" class="icon" target="_blank" rel="noopener noreferrer" aria-label="Live Site">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -269,15 +306,21 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="image">
-                        <img src="img/port2.jpg" alt="Code-Editor Live Project">
+                        <img src="img/port2.jpg" alt="Code-Editor Live Project" loading="lazy" decoding="async">
                     </div>
                     <div class="hover-items">
                         <h3>Code-Editor Live</h3>
+                        <p class="proj-desc">A real-time browser-based code editor for HTML, CSS, and JavaScript with live preview no setup required.</p>
+                        <div class="proj-stack">
+                            <span class="badge">HTML5</span>
+                            <span class="badge">CSS3</span>
+                            <span class="badge">JavaScript</span>
+                        </div>
                         <div class="icons">
-                            <a href="https://github.com/iamshkzahid/Code-Editor-Live" class="icon" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/iamshkzahid/Code-Editor-Live" class="icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://codeditor-live.netlify.app/" class="icon" target="_blank" rel="noopener noreferrer">
+                            <a href="https://codeditor-live.netlify.app/" class="icon" target="_blank" rel="noopener noreferrer" aria-label="Live Site">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -285,15 +328,20 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="image">
-                        <img src="img/port3.jpg" alt="Match-3 Game with raylib">
+                        <img src="img/port3.jpg" alt="Match-3 Game with raylib" loading="lazy" decoding="async">
                     </div>
                     <div class="hover-items">
-                        <h3>Match-3 Game (C + raylib)</h3>
+                        <h3>Match-3 Game</h3>
+                        <p class="proj-desc">A high-performance tile-matching game focusing on memory management, rendering efficiency, and game loops.</p>
+                        <div class="proj-stack">
+                            <span class="badge">C</span>
+                            <span class="badge">Raylib</span>
+                        </div>
                         <div class="icons">
-                            <a href="https://github.com/iamshkzahid/Match3-Game-with-raylib" class="icon" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/iamshkzahid/Match3-Game-with-raylib" class="icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://iamshkzahid.github.io/Match3-Game-with-raylib/" class="icon" target="_blank" rel="noopener noreferrer">
+                            <a href="https://iamshkzahid.github.io/Match3-Game-with-raylib/" class="icon" target="_blank" rel="noopener noreferrer" aria-label="Live Site">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -301,21 +349,26 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="image">
-                        <img src="img/port4.jpg" alt="Ryze AI Re-design Project">
+                        <img src="img/port4.jpg" alt="Ryze AI Re-design Project" loading="lazy" decoding="async">
                     </div>
                     <div class="hover-items">
                         <h3>Ryze Ai Re-design</h3>
+                        <p class="proj-desc">A modern UI/UX landing page redesign emphasizing glassmorphism, fluid typography, and dynamic animations.</p>
+                        <div class="proj-stack">
+                            <span class="badge">HTML</span>
+                            <span class="badge">Tailwind CSS</span>
+                            <span class="badge">UI/UX</span>
+                        </div>
                         <div class="icons">
-                            <a href="https://github.com/iamshkzahid/ryze.ai_redesign" class="icon" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/iamshkzahid/ryze.ai_redesign" class="icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://ryze-ai-redesign-zahid.netlify.app/" class="icon" target="_blank" rel="noopener noreferrer">
+                            <a href="https://ryze-ai-redesign-zahid.netlify.app/" class="icon" target="_blank" rel="noopener noreferrer" aria-label="Live Site">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -394,14 +447,26 @@
                     <div class="right-contact">
                         <form class="contact-form" id="contact-form">
                             <div class="input-control i-c-2">
-                                <input id="name" type="text" required placeholder="YOUR NAME">
-                                <input id="email" type="email" required placeholder="YOUR EMAIL">
+                                <div class="floating-group">
+                                    <input id="name" type="text" required placeholder=" ">
+                                    <label for="name">Your Name</label>
+                                </div>
+                                <div class="floating-group">
+                                    <input id="email" type="email" required placeholder=" ">
+                                    <label for="email">Your Email</label>
+                                </div>
                             </div>
                             <div class="input-control">
-                                <input id="subject" type="text" required placeholder="ENTER SUBJECT">
+                                <div class="floating-group">
+                                    <input id="subject" type="text" required placeholder=" ">
+                                    <label for="subject">Enter Subject</label>
+                                </div>
                             </div>
                             <div class="input-control">
-                                <textarea id="message" cols="15" rows="8" placeholder="Message Here..." required></textarea>
+                                <div class="floating-group">
+                                    <textarea id="message" cols="15" rows="8" required placeholder=" "></textarea>
+                                    <label for="message">Message Here...</label>
+                                </div>
                             </div>
                             <div class="submit-btn">
                                 <a href="#" id="submit-btn" class="main-btn">
@@ -420,20 +485,20 @@
 
     
 
-    <div class="controls">
-        <div class="control active-btn" data-id="home" >
+    <nav class="controls" aria-label="Main Navigation">
+        <button class="control active-btn" data-id="home" aria-label="Home" aria-current="page">
             <i class="fas fa-home"></i>
-        </div>
-        <div class="control" data-id="about">
+        </button>
+        <button class="control" data-id="about" aria-label="About">
             <i class="fas fa-user"></i>
-        </div>
-        <div class="control" data-id="portfolio">
+        </button>
+        <button class="control" data-id="portfolio" aria-label="Portfolio">
             <i class="fas fa-briefcase"></i>
-        </div>
-        <div class="control" data-id="contact">
+        </button>
+        <button class="control" data-id="contact" aria-label="Contact">
             <i class="fas fa-envelope-open"></i>
-        </div>
-    </div>
+        </button>
+    </nav>
     <div class="theme-btn">
         <i class="fas fa-adjust"></i>
     </div>

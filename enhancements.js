@@ -81,6 +81,15 @@
         particles[i].draw();
       }
       connectParticles();
+      // Step 8: Pause Particle System Fully Under Reduced Motion Mode
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          return; // Abort completely
+      }
+      // Performance Optimization: Pause rich particle canvas completely if home section isn't visible.
+      if (!document.getElementById('home').classList.contains('active')) {
+        setTimeout(function() { requestAnimationFrame(animate) }, 500);
+        return;
+      }
       requestAnimationFrame(animate);
     }
 
@@ -246,9 +255,22 @@
     if (!currentEl || !nextEl || currentEl === nextEl) return;
     if (isTransitioning) return;
 
-    if (typeof gsap === 'undefined' || transitionBars.length === 0) {
+    // Step 2: True GSAP Bypass
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || typeof gsap === 'undefined' || transitionBars.length === 0) {
       currentEl.classList.remove('active');
+      currentEl.setAttribute('aria-hidden', 'true');
       nextEl.classList.add('active');
+      nextEl.removeAttribute('aria-hidden');
+      // Step 7: Focus Flow
+      setTimeout(() => {
+          var header = nextEl.querySelector('h2, h3');
+          if (header) {
+              header.setAttribute('tabindex', '-1');
+              header.focus();
+              header.style.outline = 'none'; // Avoid weird visual ring if they didn't use keyboard
+          }
+      }, 50);
       return;
     }
 
@@ -260,23 +282,35 @@
     // Bars sweep IN from left
     tl.fromTo(transitionBars,
       { scaleX: 0, transformOrigin: 'left center' },
-      { scaleX: 1, duration: 0.35, stagger: 0.05, ease: 'power4.inOut' }
+      { scaleX: 1, duration: 0.25, stagger: 0.03, ease: 'power4.inOut' }
     );
 
     // While fully covered, switch sections
     tl.add(function() {
       gsap.set(currentEl, { clearProps: 'all' });
       currentEl.classList.remove('active');
+      currentEl.setAttribute('aria-hidden', 'true');
       nextEl.classList.add('active');
+      nextEl.removeAttribute('aria-hidden');
     });
 
-    tl.to({}, { duration: 0.08 });
+    tl.to({}, { duration: 0.05 });
 
     // Bars sweep OUT to right
     tl.fromTo(transitionBars,
       { scaleX: 1, transformOrigin: 'right center' },
-      { scaleX: 0, duration: 0.35, stagger: 0.05, ease: 'power4.inOut' }
+      { scaleX: 0, duration: 0.25, stagger: 0.03, ease: 'power4.inOut' }
     );
+    
+    tl.add(function() {
+      // Step 7: Focus Flow
+      var header = nextEl.querySelector('h2, h3');
+      if (header) {
+          header.setAttribute('tabindex', '-1');
+          header.focus();
+          header.style.outline = 'none';
+      }
+    });
 
     // Animate section content as bars reveal
     tl.add(function() {
@@ -1005,6 +1039,15 @@
   // INIT
   // ============================================================
   document.addEventListener('DOMContentLoaded', function() {
+    // Accessibility Initialization
+    document.querySelectorAll('section, header').forEach(function(el) {
+      if (!el.classList.contains('active')) {
+        el.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // GSAP Reduced motion handled directly inside switchSection now.
+
     var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
     // Universal features (both desktop & mobile)
