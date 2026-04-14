@@ -1,9 +1,6 @@
-/* ============================================================
-   ENHANCEMENTS.CSS — v3 NEXT-GEN
-   Industry-best animations & premium visual effects
-   ============================================================ */
+ /* ENHANCEMENTS.CSS  */
 
-/* ---- Particle Canvas ---- */
+/* Particle Canvas */
 #particle-canvas {
   position: fixed;
   top: 0;
@@ -19,7 +16,7 @@ body > header { position: relative; z-index: 2; }
 body > main { position: relative; z-index: 2; }
 .theme-btn { z-index: 10 !important; }
 
-/* ---- Enhanced Preloader ---- */
+/* Enhanced Preloader */
 #preloader {
   position: fixed;
   top: 0; left: 0;
@@ -35,7 +32,7 @@ body > main { position: relative; z-index: 2; }
 #preloader.preloader-done {
   opacity: 0; visibility: hidden; pointer-events: none;
 }
-/* Pac-Man wrapper: holds both the pacman + dots in a row */
+/* Pac-Man wrapper */
 .pacman-loader {
   display: flex;
   align-items: center;
@@ -43,7 +40,7 @@ body > main { position: relative; z-index: 2; }
   position: relative;
 }
 
-/* Pac-Man character — conic-gradient approach for perfect circle */
+/* Pac-Man */
 .pacman-loader .pacman {
   width: 60px;
   height: 60px;
@@ -56,7 +53,7 @@ body > main { position: relative; z-index: 2; }
   100% { background: conic-gradient(from 90deg at 50% 50%, transparent 0deg, transparent 35deg, var(--color-secondary, #27AE60) 35deg, var(--color-secondary, #27AE60) 325deg, transparent 325deg); }
 }
 
-/* Dots container: sits to the right of Pac-Man */
+/* Dots container */
 .pacman-dots {
   display: flex;
   align-items: center;
@@ -121,7 +118,7 @@ body > main { position: relative; z-index: 2; }
   50%      { opacity: 1; }
 }
 
-/* ---- Transition Bars (Cinematic Wipe) ---- */
+/*  Transition Bars (Cinematic Wipe)*/
 .transition-bars {
   position: fixed;
   top: 0; left: 0;
@@ -138,7 +135,7 @@ body > main { position: relative; z-index: 2; }
   transform-origin: left center;
 }
 
-/* ---- Letter Hover ---- */
+/* Letter Hover */
 .letter-hover-target .letter {
   display: inline-block;
   transition: color 0.2s ease;
@@ -149,7 +146,7 @@ body > main { position: relative; z-index: 2; }
   width: 0.35em;
 }
 
-/* ---- Glassmorphism Stat Cards ---- */
+/* Stat Cards */
 .about-container .right-about {
   perspective: 1200px;
 }
@@ -168,7 +165,7 @@ body > main { position: relative; z-index: 2; }
   box-shadow: 0 8px 32px rgba(39, 174, 96, 0.2), inset 0 0 30px rgba(39, 174, 96, 0.05);
   border-color: var(--color-secondary) !important;
 }
-/* Animated gradient sweep on hover */
+/* Animated on hover */
 .about-container .right-about .about-item::after {
   content: '';
   position: absolute;
@@ -186,7 +183,7 @@ body > main { position: relative; z-index: 2; }
   100% { transform: rotate(360deg); }
 }
 
-/* ---- Portfolio Glow on Hover ---- */
+/* Portfolio Glow on Hover */
 .portfolios .portfolio-item {
   transform-style: preserve-3d;
   transition: all 0.4s ease-in-out, box-shadow 0.3s ease !important;
@@ -195,12 +192,12 @@ body > main { position: relative; z-index: 2; }
 .portfolios .portfolio-item:hover {
   box-shadow: 0 0 40px rgba(39, 174, 96, 0.25);
 }
-/* Ensure hover overlay sits ABOVE shimmer ::after (z-index:2) */
+
 .portfolios .portfolio-item .hover-items {
   z-index: 10 !important;
   pointer-events: auto !important;
 }
-/* Make icon links absolutely clickable */
+/* Make icon links clickable */
 .portfolios .portfolio-item .hover-items .icons .icon {
   position: relative;
   z-index: 11;
@@ -208,7 +205,7 @@ body > main { position: relative; z-index: 2; }
   cursor: pointer;
 }
 
-/* ---- Leaflet Map ---- */
+/* Leaflet Map */
 #contact-map {
   width: 100%;
   height: 300px;
@@ -223,7 +220,7 @@ body > main { position: relative; z-index: 2; }
 .leaflet-tile-pane { filter: brightness(0.85) saturate(1.1); }
 .leaflet-container { font-family: 'Poppins', sans-serif !important; }
 
-/* ---- Toast Notifications ---- */
+/* Toast Notifications */
 .toast-notification {
   position: fixed;
   top: 20px; right: 20px;
@@ -249,7 +246,7 @@ body > main { position: relative; z-index: 2; }
 }
 .toast-notification .toast-close:hover { color: #fff; }
 
-/* ---- Custom Cursor ---- */
+/* Custom Cursor */
 .cursor-dot {
   position: fixed;
   width: 8px; height: 8px; border-radius: 50%;
@@ -272,7 +269,7 @@ body > main { position: relative; z-index: 2; }
   border-color: rgba(39, 174, 96, 0.35);
 }
 
-/* ---- Scroll Progress Indicator ---- */
+/* Scroll Progress Indicator */
 .scroll-progress {
   position: fixed;
   top: 0; left: 0;
@@ -282,13 +279,12 @@ body > main { position: relative; z-index: 2; }
   transition: width 0.05s linear;
 }
 
-/* ---- Clip-path text reveal helper ---- */
+/* Clip-path text reveal helper */
 .clip-reveal {
   clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 
 /* ---- Hide header content until GSAP entrance animations run ---- */
-/* Prevents flash of static content between preloader exit and animations */
 .header-content .left-header .h-shape,
 .header-content .left-header .image,
 .header-content .right-header .name,
@@ -297,12 +293,9 @@ body > main { position: relative; z-index: 2; }
   opacity: 0;
 }
 
-/* ============================================================
-   ★★★ NEXT-GEN PREMIUM EFFECTS ★★★
-   ============================================================ */
 
-/* ---- 1. ANIMATED GRADIENT TEXT ---- */
-/* Name heading flows with living gradient */
+
+/*  1. ANIMATED GRADIENT TEXT */
 .header-content .right-header .name span,
 .letter-hover-target span {
   background: linear-gradient(
@@ -318,7 +311,6 @@ body > main { position: relative; z-index: 2; }
   background-clip: text;
   animation: gradientFlow 4s ease-in-out infinite;
 }
-/* Section title highlights also get gradient — EXCLUDE .bg-text watermark */
 .main-title h2 span:not(.bg-text) {
   background: linear-gradient(
     90deg,
@@ -333,7 +325,6 @@ body > main { position: relative; z-index: 2; }
   background-clip: text !important;
   animation: gradientFlow 5s ease-in-out infinite !important;
 }
-/* Ensure bg-text watermark stays properly behind */
 .main-title h2 .bg-text {
   -webkit-text-fill-color: initial !important;
   -webkit-background-clip: initial !important;
@@ -348,7 +339,7 @@ body > main { position: relative; z-index: 2; }
   50% { background-position: 100% 50%; }
 }
 
-/* ---- 2. CURSOR SPARKLE TRAIL ---- */
+/* 2. CURSOR SPARKLE TRAIL */
 .cursor-sparkle {
   position: fixed;
   width: 4px; height: 4px;
@@ -371,7 +362,7 @@ body > main { position: relative; z-index: 2; }
   }
 }
 
-/* ---- 3. MORPHING AURORA BLOBS ---- */
+/* 3. MORPHING AURORA BLOBS */
 .aurora-blob {
   position: fixed;
   border-radius: 50%;
@@ -405,7 +396,7 @@ body > main { position: relative; z-index: 2; }
   75% { transform: translate(40px, 25px) scale(1.08) rotate(3deg); }
 }
 
-/* ---- 4. FILM GRAIN OVERLAY ---- */
+/* 4. FILM GRAIN OVERLAY */
 body::after {
   content: '';
   position: fixed;
@@ -425,7 +416,6 @@ body::after {
   100% { transform: translate(1px, -1px); }
 }
 
-/* ---- 5. SHIMMER SWEEP ON PORTFOLIO ---- */
 .portfolios .portfolio-item::after {
   content: '';
   position: absolute;
@@ -447,7 +437,7 @@ body::after {
   left: 150%;
 }
 
-/* ---- 6. FLOATING SOCIAL ICONS ---- */
+/* 5. FLOATING SOCIAL ICONS  */
 .header-content .btn-social-wrapper .socials-container a {
   animation: gentleFloat 3s ease-in-out infinite;
 }
@@ -459,7 +449,6 @@ body::after {
   50% { transform: translateY(-6px); }
 }
 
-/* ---- 7. PULSING CTA BUTTON GLOW ---- */
 .header-content .btn-con .main-btn {
   animation: btnPulseGlow 2.5s ease-in-out infinite;
 }
@@ -468,7 +457,7 @@ body::after {
   50% { box-shadow: 0 0 25px 6px rgba(39, 174, 96, 0.12); }
 }
 
-/* ---- 8. TYPING CURSOR BLINK ---- */
+/* 6. TYPING CURSOR BLINK */
 .header-content .right-header p.typed::after {
   content: '|';
   display: inline-block;
@@ -482,7 +471,7 @@ body::after {
   51%, 100% { opacity: 0; }
 }
 
-/* ---- 9. GLITCH LETTER EFFECT ---- */
+/* 7. GLITCH LETTER EFFECT */
 .letter.letter-glitch {
   animation: letterGlitch 0.2s ease !important;
   color: var(--color-secondary) !important;
@@ -498,7 +487,7 @@ body::after {
   80% { transform: translate(2px, 1px) skewX(-1deg); }
 }
 
-/* ---- 10. TIMELINE ANIMATED PULSE DOTS ---- */
+/* 8. TIMELINE ANIMATED */
 .timeline-item .tl-icon {
   position: relative;
 }
@@ -517,7 +506,7 @@ body::after {
   100% { width: 180%; height: 180%; opacity: 0; }
 }
 
-/* ---- 11. THEME TOGGLE FLASH ---- */
+/* 9. THEME TOGGLE */
 .theme-flash {
   position: fixed;
   top: 0; left: 0;
@@ -528,7 +517,6 @@ body::after {
   opacity: 0;
 }
 
-/* ---- 12. HEADER PARALLAX DEPTH ---- */
 .header-content .left-header {
   transition: transform 0.1s ease-out;
 }
@@ -536,7 +524,7 @@ body::after {
   transition: transform 0.1s ease-out;
 }
 
-/* ---- 13. PORTFOLIO IMAGE ZOOM ON HOVER ---- */
+/* 10. PORTFOLIO IMAGE ZOOM ON HOVER */
 .portfolios .portfolio-item .image img {
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
@@ -544,19 +532,16 @@ body::after {
   transform: scale(1.08);
 }
 
-/* ---- 14. STAT CARD ENTRANCE GLOW ---- */
 .about-container .right-about .about-item.counted .large-text {
   text-shadow: 0 0 20px rgba(39, 174, 96, 0.3);
 }
 
-/* ---- 15. ACTIVE NAV BUTTON GLOW ---- */
+/* 11. ACTIVE NAV BUTTON GLOW */
 .controls .active-btn {
   box-shadow: 0 0 18px rgba(39, 174, 96, 0.35) !important;
 }
 
-/* ==============================
-   RESPONSIVE — MOBILE-ENHANCED
-   ============================== */
+   /* RESPONSIVE — MOBILE-ENHANCED */
 
 /* Desktop-only: custom cursor (no mouse on mobile) */
 @media (hover: none) and (pointer: coarse) {
@@ -579,7 +564,7 @@ body::after {
   100% { transform: scale(1) translate(var(--tx), var(--ty)); opacity: 0; }
 }
 
-/* -- SWIPE HINT ARROW (mobile-only) -- */
+/* SWIPE HINT ARROW (mobile-only) */
 .swipe-hint {
   display: none;
 }
@@ -648,21 +633,16 @@ body::after {
     filter: blur(60px) !important;
   }
 
-  /* Film grain: very subtle on mobile */
   body::after { opacity: 0.015 !important; }
 
-  /* Transition bars: ensure full coverage on mobile */
   .transition-bars { z-index: 99999 !important; }
   .transition-bar { height: 20vh !important; }
 
-  /* Scroll progress: thinner on mobile */
   .scroll-progress { height: 2px; }
 
-  /* Preloader: scale down slightly */
   .pacman-loader { transform: scale(0.9); }
   .preloader-counter { font-size: 2rem; }
 
-  /* Section titles: ensure gradient stays clean */
   .main-title h2 span:not(.bg-text) {
     animation: gradientFlow 5s ease-in-out infinite !important;
   }
@@ -677,7 +657,6 @@ body::after {
   .toast-notification { right: 10px; left: 10px; min-width: auto; max-width: none; }
   .scroll-progress { height: 2px; }
 
-  /* Aurora smaller but still present */
   .aurora-blob {
     width: 150px !important;
     height: 150px !important;
@@ -685,7 +664,6 @@ body::after {
     filter: blur(50px) !important;
   }
 
-  /* Film grain: subtle but present */
   body::after { opacity: 0.01 !important; display: block !important; }
 }
 

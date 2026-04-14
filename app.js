@@ -17,13 +17,11 @@
 
             if (current === next) return;
 
-            // Update URL hash for persistence (so back button works)
+           
             history.replaceState(null, '', '#' + button.dataset.id);
 
-            // Scroll to top on section switch
             window.scrollTo({ top: 0, behavior: "smooth" });
 
-            // Use GSAP-powered transitions if available (from enhancements.js)
             if (typeof window.switchSection === 'function') {
                 window.switchSection(current, next);
             } else {
@@ -33,18 +31,15 @@
         })
     });
 
-    // On page load: restore section from URL hash
     function restoreFromHash() {
         var hash = window.location.hash.replace('#', '');
         if (hash && sectionIds.indexOf(hash) !== -1 && hash !== 'home') {
             var current = document.querySelector('.active');
             var next = document.getElementById(hash);
             if (current && next && current !== next) {
-                // Switch without animation (instant restore)
                 current.classList.remove('active');
                 next.classList.add('active');
 
-                // Update nav button highlight
                 var currBtn = document.querySelector('.active-btn');
                 if (currBtn) {
                     currBtn.classList.remove('active-btn');
@@ -58,7 +53,6 @@
             }
         }
     }
-    // Restore after DOM is ready but before animations
     restoreFromHash();
 
     // Open all external links in new tabs

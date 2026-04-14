@@ -81,9 +81,8 @@
         particles[i].draw();
       }
       connectParticles();
-      // Step 8: Pause Particle System Fully Under Reduced Motion Mode
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          return; // Abort completely
+          return; 
       }
       // Performance Optimization: Pause rich particle canvas completely if home section isn't visible.
       if (!document.getElementById('home').classList.contains('active')) {
@@ -107,7 +106,6 @@
     var preloader = document.getElementById('preloader');
     if (!preloader) return;
 
-    // Add counter + progress bar dynamically
     var progressWrap = document.createElement('div');
     progressWrap.className = 'preloader-progress';
     var progressBar = document.createElement('div');
@@ -120,7 +118,6 @@
     counter.textContent = '0%';
     preloader.appendChild(counter);
 
-    // Animate counter 0→100
     var count = 0;
     var duration = 1600;
     var interval = duration / 100;
@@ -130,7 +127,6 @@
       progressBar.style.width = count + '%';
       if (count >= 100) {
         clearInterval(countInterval);
-        // Dramatic exit after brief pause
         setTimeout(function() { exitPreloader(preloader); }, 300);
       }
     }, interval);
@@ -144,11 +140,9 @@
     }
 
     var tl = gsap.timeline();
-    // Flash the counter green
     tl.to(preloader.querySelector('.preloader-counter'), {
       scale: 1.2, color: '#6fea9c', duration: 0.2, ease: 'power2.out'
     });
-    // Slide preloader up dramatically
     tl.to(preloader, {
       yPercent: -100,
       duration: 0.7,
@@ -161,7 +155,6 @@
   }
 
   function onPreloaderDone() {
-    // Start particles
     initParticles();
     runHeaderEntry();
   }
@@ -171,7 +164,6 @@
     var revealSelectors = '.header-content .left-header .h-shape, .header-content .left-header .image, .header-content .right-header .name, .header-content .right-header p, .header-content .right-header .btn-social-wrapper';
 
     if (typeof gsap === 'undefined') {
-      // Fallback: just make everything visible
       document.querySelectorAll(revealSelectors).forEach(function(el) {
         el.style.opacity = '1';
       });
@@ -186,7 +178,6 @@
 
     var tl = gsap.timeline();
 
-    // h-shape clip reveal
     if (hShape) {
       tl.fromTo(hShape,
         { clipPath: 'polygon(0 0, 0% 0, 0% 100%, 0% 100%)', opacity: 0 },
@@ -201,11 +192,9 @@
         '-=0.4'
       );
     }
-    // Name: letters fly in from random positions
     if (nameEl) {
       tl.fromTo(nameEl, { opacity: 0 }, { opacity: 1, duration: 0.01 }, '-=0.2');
       tl.add(function() {
-        // Split and then animate letters
         splitTextToLetters();
         var letters = nameEl.querySelectorAll('.letter');
         if (letters.length) {
@@ -255,20 +244,18 @@
     if (!currentEl || !nextEl || currentEl === nextEl) return;
     if (isTransitioning) return;
 
-    // Step 2: True GSAP Bypass
     var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion || typeof gsap === 'undefined' || transitionBars.length === 0) {
       currentEl.classList.remove('active');
       currentEl.setAttribute('aria-hidden', 'true');
       nextEl.classList.add('active');
       nextEl.removeAttribute('aria-hidden');
-      // Step 7: Focus Flow
       setTimeout(() => {
           var header = nextEl.querySelector('h2, h3');
           if (header) {
               header.setAttribute('tabindex', '-1');
               header.focus();
-              header.style.outline = 'none'; // Avoid weird visual ring if they didn't use keyboard
+              header.style.outline = 'none'; 
           }
       }, 50);
       return;
@@ -340,10 +327,8 @@
           { y: 0, opacity: 1, scale: 1, duration: 0.5, stagger: 0.1, ease: 'back.out(1.4)', clearProps: 'all' }
         );
       }
-      // Animated counters
       animateCounters(section);
 
-      // Timeline: alternating slide from left/right
       if (timelineItems.length) {
         for (var i = 0; i < timelineItems.length; i++) {
           var fromX = (i % 2 === 0) ? -40 : 40;
@@ -353,10 +338,8 @@
           );
         }
       }
-      // Skill bars fill
       animateSkillBars(section);
 
-      // Progress bar labels
       if (progressBars.length) {
         gsap.fromTo(progressBars,
           { opacity: 0 },
@@ -412,11 +395,10 @@
       var text = el.textContent.trim();
       var num = parseInt(text);
       if (isNaN(num)) {
-        // Text like "Active" — do a scramble reveal
         scrambleText(el, text);
         return;
       }
-      var suffix = text.replace(num.toString(), ''); // e.g., "+"
+      var suffix = text.replace(num.toString(), ''); 
       el.textContent = '0' + suffix;
       var obj = { val: 0 };
       gsap.to(obj, {
@@ -868,7 +850,7 @@
     var touchStartY = 0;
     var touchEndX = 0;
     var touchEndY = 0;
-    var minSwipe = 80; // minimum px for a swipe
+    var minSwipe = 80; 
 
     // Create swipe hint element
     var hint = document.createElement('div');
@@ -897,7 +879,6 @@
       if (Math.abs(diffX) < minSwipe) return;
       if (Math.abs(diffY) > Math.abs(diffX) * 0.7) return; 
 
-      // Find current section index
       var currentSection = document.querySelector('section.active, header.active');
       if (!currentSection) return;
       var currentId = currentSection.id;
@@ -906,36 +887,29 @@
 
       var nextIndex;
       if (diffX < 0) {
-        // Swipe LEFT → next section
         nextIndex = currentIndex + 1;
       } else {
-        // Swipe RIGHT → previous section
         nextIndex = currentIndex - 1;
       }
 
-      // Bounds check
       if (nextIndex < 0 || nextIndex >= sectionOrder.length) return;
 
       var nextId = sectionOrder[nextIndex];
       var nextSection = document.getElementById(nextId);
       if (!nextSection || nextSection === currentSection) return;
 
-      // Hide swipe hint on first successful swipe
       clearTimeout(hintTimeout);
       hint.style.transition = 'opacity 0.3s';
       hint.style.opacity = '0';
       setTimeout(function() { hint.style.display = 'none'; }, 300);
 
-      // Update nav button highlight
       var activeBtn = document.querySelector('.active-btn');
       if (activeBtn) activeBtn.classList.remove('active-btn');
       var targetBtn = document.querySelector('.control[data-id="' + nextId + '"]');
       if (targetBtn) targetBtn.classList.add('active-btn');
 
-      // Update URL hash
       history.replaceState(null, '', '#' + nextId);
 
-      // Trigger cinematic transition
       if (typeof window.switchSection === 'function') {
         window.switchSection(currentSection, nextSection);
       } else {
@@ -945,9 +919,7 @@
     }, { passive: true });
   }
 
-  // ============================================================
   // 26. TOUCH-FRIENDLY PORTFOLIO OVERLAY
-  // ============================================================
   function initTouchPortfolio() {
     var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
@@ -959,12 +931,9 @@
         var hoverItems = this.querySelector('.hover-items');
         if (!hoverItems) return;
 
-        // If clicking on a link inside the overlay, let it through
         if (e.target.closest('a.icon')) return;
 
-        // Toggle the overlay
         var isVisible = hoverItems.style.opacity === '1';
-        // Close all other overlays first
         portItems.forEach(function(pi) {
           var hi = pi.querySelector('.hover-items');
           if (hi) {
@@ -980,7 +949,6 @@
       });
     });
 
-    // Tap outside to close any open overlay
     document.addEventListener('click', function(e) {
       if (!e.target.closest('.portfolio-item')) {
         portItems.forEach(function(pi) {
@@ -994,9 +962,7 @@
     });
   }
 
-  // ============================================================
-  // 27. MOBILE GYRO PARALLAX (device orientation for depth)
-  // ============================================================
+  // 27. MOBILE GYRO PARALLAX 
   function initGyroParallax() {
     var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (!isMobile) return;
@@ -1023,23 +989,19 @@
       var homeSection = document.getElementById('home');
       if (!homeSection || !homeSection.classList.contains('active')) return;
 
-      var gamma = e.gamma || 0; // Left-right tilt (-90 to 90)
-      var beta = e.beta || 0;   // Front-back tilt (-180 to 180)
+      var gamma = e.gamma || 0; 
+      var beta = e.beta || 0;   
 
-      // Normalize to -1 to 1 range
       var x = Math.max(-1, Math.min(1, gamma / 30));
-      var y = Math.max(-1, Math.min(1, (beta - 45) / 30)); // 45° as neutral
+      var y = Math.max(-1, Math.min(1, (beta - 45) / 30)); 
 
       leftHeader.style.transform = 'translate(' + (x * -6) + 'px, ' + (y * -4) + 'px)';
       rightHeader.style.transform = 'translate(' + (x * 4) + 'px, ' + (y * 3) + 'px)';
     }
   }
 
-  // ============================================================
   // INIT
-  // ============================================================
   document.addEventListener('DOMContentLoaded', function() {
-    // Accessibility Initialization
     document.querySelectorAll('section, header').forEach(function(el) {
       if (!el.classList.contains('active')) {
         el.setAttribute('aria-hidden', 'true');
