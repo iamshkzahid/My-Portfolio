@@ -26,7 +26,7 @@
 
 ### 🎬 Live Demo Recording
 
-<img src="./img/demo-recording.webp" alt="Portfolio Demo Recording" width="100%"/>
+<video src="./img/demo-recording.mp4" alt="Portfolio Demo Recording" width="100%" autoplay loop muted playsinline></video>
 
 > *Full cinematic walkthrough — preloader → transitions → hover effects → theme toggle*
 
