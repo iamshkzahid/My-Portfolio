@@ -26,7 +26,7 @@
 
 ### 🎬 Live Demo Recording
 
-<video src="./img/demo-recording.mp4" alt="Portfolio Demo Recording" width="100%" autoplay loop muted playsinline></video>
+[![Portfolio Demo Recording](./img/demo-thumbnail.png)](https://github.com/iamshkzahid/My-Portfolio/raw/main/img/demo-recording.mp4)
 
 > *Full cinematic walkthrough — preloader → transitions → hover effects → theme toggle*
 
